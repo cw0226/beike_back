@@ -1,8 +1,9 @@
 package com.kgc.service;
 
+import com.kgc.pojo.User;
 import com.kgc.utils.Result;
 
 public interface UserService {
 
-    public Result getUserOfLogin(String userName,String password);
+    public User getUserOfLogin(String userName, String password);
 }
