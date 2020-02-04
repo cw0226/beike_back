@@ -22,8 +22,8 @@ public class LoginController {
     private UserService userService;
 
     @PostMapping("/login")
-    public Result login(@RequestParam String userName, @RequestParam String userPassword, HttpServletResponse response) throws UnsupportedEncodingException {
-        User user = userService.getUserOfLogin(userName,userPassword);
+    public Result login(@RequestParam String username, @RequestParam String password, HttpServletResponse response) throws UnsupportedEncodingException {
+        User user = userService.getUserOfLogin(username,password);
         if(user != null){
             //转为json格式再转码
             String fastJson = JSONObject.toJSONString(user);
