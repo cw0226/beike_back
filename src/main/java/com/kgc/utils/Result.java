@@ -6,7 +6,8 @@ package com.kgc.utils;
  *      100:请求成功
  *      101:请求异常
  *      102:登录失败
- *      104:找不到请求
+ *      103:未登录
+ *      104:请求不到数据
  */
 public class Result {
     private Object data;        //数据
