@@ -24,6 +24,35 @@ public class LoginController {
 
 
     /**
+     * 根据用户名查询用户是否存在
+     * @param name
+     * @return
+     */
+    @GetMapping("/selectUserByName")
+    public Result selectUserByName(String name){
+        User user = userService.selectUserByName(name);
+        if(user != null){
+            return new Result(user,"用户存在",100);
+        }
+        return new Result(null,"用户不存在",104);
+    }
+
+    /**
+     * 用户注册
+     * @return
+     */
+    @PostMapping("/register")
+    public Result addUser(User user){
+        //默认为普通用户
+        user.setUserRole("普通用户");
+        int count = userService.addUser(user);
+        if(count > 0 ){
+            return new Result(null,"注册成功",100);
+        }
+        return new Result(null,"注册失败,请重新注册",104);
+    }
+
+    /**
      * 退出登录
      * @return
      */

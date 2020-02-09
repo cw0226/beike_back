@@ -2,6 +2,7 @@ package com.kgc.service.impl;
 
 import com.alibaba.druid.util.StringUtils;
 import com.kgc.dao.UserMapper;
+import com.kgc.dao.UserMapperEx;
 import com.kgc.pojo.User;
 import com.kgc.pojo.UserCriteria;
 import com.kgc.service.UserService;
@@ -16,6 +17,9 @@ public class UserServiceImpl implements UserService {
     @Resource
     private UserMapper userMapper;
 
+    @Resource
+    private UserMapperEx userMapperEx;
+
     @Override
     public User getUserOfLogin(String userName,String password) {
         //创建用户参数类，拼接SQL语句
@@ -29,5 +33,15 @@ public class UserServiceImpl implements UserService {
             return userList.get(0);
         }
         return null;
+    }
+
+    @Override
+    public int addUser(User user) {
+        return userMapper.insertSelective(user);
+    }
+
+    @Override
+    public User selectUserByName(String name) {
+        return userMapperEx.selectUserByName(name);
     }
 }
