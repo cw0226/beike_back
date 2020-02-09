@@ -166,73 +166,63 @@ public class HousingCriteria {
             return (Criteria) this;
         }
 
-        public Criteria andCityIsNull() {
-            addCriterion("city is null");
+        public Criteria andCommunityIdIsNull() {
+            addCriterion("community_id is null");
             return (Criteria) this;
         }
 
-        public Criteria andCityIsNotNull() {
-            addCriterion("city is not null");
+        public Criteria andCommunityIdIsNotNull() {
+            addCriterion("community_id is not null");
             return (Criteria) this;
         }
 
-        public Criteria andCityEqualTo(String value) {
-            addCriterion("city =", value, "city");
+        public Criteria andCommunityIdEqualTo(Integer value) {
+            addCriterion("community_id =", value, "communityId");
             return (Criteria) this;
         }
 
-        public Criteria andCityNotEqualTo(String value) {
-            addCriterion("city <>", value, "city");
+        public Criteria andCommunityIdNotEqualTo(Integer value) {
+            addCriterion("community_id <>", value, "communityId");
             return (Criteria) this;
         }
 
-        public Criteria andCityGreaterThan(String value) {
-            addCriterion("city >", value, "city");
+        public Criteria andCommunityIdGreaterThan(Integer value) {
+            addCriterion("community_id >", value, "communityId");
             return (Criteria) this;
         }
 
-        public Criteria andCityGreaterThanOrEqualTo(String value) {
-            addCriterion("city >=", value, "city");
+        public Criteria andCommunityIdGreaterThanOrEqualTo(Integer value) {
+            addCriterion("community_id >=", value, "communityId");
             return (Criteria) this;
         }
 
-        public Criteria andCityLessThan(String value) {
-            addCriterion("city <", value, "city");
+        public Criteria andCommunityIdLessThan(Integer value) {
+            addCriterion("community_id <", value, "communityId");
             return (Criteria) this;
         }
 
-        public Criteria andCityLessThanOrEqualTo(String value) {
-            addCriterion("city <=", value, "city");
+        public Criteria andCommunityIdLessThanOrEqualTo(Integer value) {
+            addCriterion("community_id <=", value, "communityId");
             return (Criteria) this;
         }
 
-        public Criteria andCityLike(String value) {
-            addCriterion("city like", value, "city");
+        public Criteria andCommunityIdIn(List<Integer> values) {
+            addCriterion("community_id in", values, "communityId");
             return (Criteria) this;
         }
 
-        public Criteria andCityNotLike(String value) {
-            addCriterion("city not like", value, "city");
+        public Criteria andCommunityIdNotIn(List<Integer> values) {
+            addCriterion("community_id not in", values, "communityId");
             return (Criteria) this;
         }
 
-        public Criteria andCityIn(List<String> values) {
-            addCriterion("city in", values, "city");
+        public Criteria andCommunityIdBetween(Integer value1, Integer value2) {
+            addCriterion("community_id between", value1, value2, "communityId");
             return (Criteria) this;
         }
 
-        public Criteria andCityNotIn(List<String> values) {
-            addCriterion("city not in", values, "city");
-            return (Criteria) this;
-        }
-
-        public Criteria andCityBetween(String value1, String value2) {
-            addCriterion("city between", value1, value2, "city");
-            return (Criteria) this;
-        }
-
-        public Criteria andCityNotBetween(String value1, String value2) {
-            addCriterion("city not between", value1, value2, "city");
+        public Criteria andCommunityIdNotBetween(Integer value1, Integer value2) {
+            addCriterion("community_id not between", value1, value2, "communityId");
             return (Criteria) this;
         }
 

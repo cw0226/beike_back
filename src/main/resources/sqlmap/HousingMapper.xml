@@ -3,7 +3,7 @@
 <mapper namespace="com.kgc.dao.HousingMapper" >
   <resultMap id="BaseResultMap" type="com.kgc.pojo.Housing" >
     <id column="id" property="id" jdbcType="INTEGER" />
-    <result column="city" property="city" jdbcType="VARCHAR" />
+    <result column="community_id" property="communityId" jdbcType="INTEGER" />
     <result column="buildings_id" property="buildingsId" jdbcType="INTEGER" />
     <result column="expect_rent" property="expectRent" jdbcType="DECIMAL" />
     <result column="rent_type" property="rentType" jdbcType="VARCHAR" />
@@ -74,7 +74,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List" >
-    id, city, buildings_id, expect_rent, rent_type, name, phone, state, create_date, 
+    id, community_id, buildings_id, expect_rent, rent_type, name, phone, state, create_date, 
     create_by, modify_date, modify_by
   </sql>
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.kgc.pojo.HousingCriteria" >
@@ -108,12 +108,12 @@
     </if>
   </delete>
   <insert id="insert" parameterType="com.kgc.pojo.Housing" >
-    insert into beike_housing (id, city, buildings_id, 
+    insert into beike_housing (id, community_id, buildings_id, 
       expect_rent, rent_type, name, 
       phone, state, create_date, 
       create_by, modify_date, modify_by
       )
-    values (#{id,jdbcType=INTEGER}, #{city,jdbcType=VARCHAR}, #{buildingsId,jdbcType=INTEGER}, 
+    values (#{id,jdbcType=INTEGER}, #{communityId,jdbcType=INTEGER}, #{buildingsId,jdbcType=INTEGER}, 
       #{expectRent,jdbcType=DECIMAL}, #{rentType,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, 
       #{phone,jdbcType=VARCHAR}, #{state,jdbcType=VARCHAR}, #{createDate,jdbcType=TIMESTAMP}, 
       #{createBy,jdbcType=INTEGER}, #{modifyDate,jdbcType=TIMESTAMP}, #{modifyBy,jdbcType=INTEGER}
@@ -125,8 +125,8 @@
       <if test="id != null" >
         id,
       </if>
-      <if test="city != null" >
-        city,
+      <if test="communityId != null" >
+        community_id,
       </if>
       <if test="buildingsId != null" >
         buildings_id,
@@ -163,8 +163,8 @@
       <if test="id != null" >
         #{id,jdbcType=INTEGER},
       </if>
-      <if test="city != null" >
-        #{city,jdbcType=VARCHAR},
+      <if test="communityId != null" >
+        #{communityId,jdbcType=INTEGER},
       </if>
       <if test="buildingsId != null" >
         #{buildingsId,jdbcType=INTEGER},
@@ -210,8 +210,8 @@
       <if test="record.id != null" >
         id = #{record.id,jdbcType=INTEGER},
       </if>
-      <if test="record.city != null" >
-        city = #{record.city,jdbcType=VARCHAR},
+      <if test="record.communityId != null" >
+        community_id = #{record.communityId,jdbcType=INTEGER},
       </if>
       <if test="record.buildingsId != null" >
         buildings_id = #{record.buildingsId,jdbcType=INTEGER},
@@ -251,7 +251,7 @@
   <update id="updateByExample" parameterType="map" >
     update beike_housing
     set id = #{record.id,jdbcType=INTEGER},
-      city = #{record.city,jdbcType=VARCHAR},
+      community_id = #{record.communityId,jdbcType=INTEGER},
       buildings_id = #{record.buildingsId,jdbcType=INTEGER},
       expect_rent = #{record.expectRent,jdbcType=DECIMAL},
       rent_type = #{record.rentType,jdbcType=VARCHAR},
@@ -269,8 +269,8 @@
   <update id="updateByPrimaryKeySelective" parameterType="com.kgc.pojo.Housing" >
     update beike_housing
     <set >
-      <if test="city != null" >
-        city = #{city,jdbcType=VARCHAR},
+      <if test="communityId != null" >
+        community_id = #{communityId,jdbcType=INTEGER},
       </if>
       <if test="buildingsId != null" >
         buildings_id = #{buildingsId,jdbcType=INTEGER},
@@ -307,7 +307,7 @@
   </update>
   <update id="updateByPrimaryKey" parameterType="com.kgc.pojo.Housing" >
     update beike_housing
-    set city = #{city,jdbcType=VARCHAR},
+    set community_id = #{communityId,jdbcType=INTEGER},
       buildings_id = #{buildingsId,jdbcType=INTEGER},
       expect_rent = #{expectRent,jdbcType=DECIMAL},
       rent_type = #{rentType,jdbcType=VARCHAR},

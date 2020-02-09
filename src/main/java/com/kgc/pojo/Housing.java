@@ -8,7 +8,7 @@ import java.util.Date;
 public class Housing {
     private Integer id;
 
-    private String city;
+    private Integer communityId;
 
     private Integer buildingsId;
 
@@ -40,12 +40,12 @@ public class Housing {
         this.id = id;
     }
 
-    public String getCity() {
-        return city;
+    public Integer getCommunityId() {
+        return communityId;
     }
 
-    public void setCity(String city) {
-        this.city = city == null ? null : city.trim();
+    public void setCommunityId(Integer communityId) {
+        this.communityId = communityId;
     }
 
     public Integer getBuildingsId() {
