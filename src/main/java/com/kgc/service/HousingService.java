@@ -10,4 +10,8 @@ public interface HousingService {
     List<Housing> getHousingList(Housing housing);
 
     Housing getHousingById(Integer id);
+
+    int deleteHousingById(Integer id);
+
+    int updateHousingById(Housing housing);
 }

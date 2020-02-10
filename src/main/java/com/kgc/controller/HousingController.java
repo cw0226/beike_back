@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
+import java.util.Date;
 import java.util.List;
 
 @RestController
@@ -27,7 +28,36 @@ public class HousingController {
      */
     @GetMapping("view/addHousing")
     public Result addHousing(Housing housing){
+        housing.setCreateDate(new Date());  // 创建日期
         int count = housingService.addHousing(housing);
+        if (count > 0){
+            return new Result(null, "请求成功", 100);
+        }
+        return new Result(null, "请求失败", 104);
+    }
+
+    /**
+     * 根据id删除房源
+     * @param id
+     * @return
+     */
+    @GetMapping("view/deleteHousingById")
+    public Result deleteHousingById(@RequestParam Integer id){
+        int count = housingService.deleteHousingById(id);
+        if (count > 0){
+            return new Result(null, "请求成功", 100);
+        }
+        return new Result(null, "请求失败", 104);
+    }
+
+    /**
+     * 根据id修改房源信息
+     * @param housing
+     * @return
+     */
+    @GetMapping("view/updateHousingById")
+    public Result updateHousingById(Housing housing){
+        int count = housingService.updateHousingById(housing);
         if (count > 0){
             return new Result(null, "请求成功", 100);
         }

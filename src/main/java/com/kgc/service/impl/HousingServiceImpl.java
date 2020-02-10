@@ -32,4 +32,14 @@ public class HousingServiceImpl implements HousingService {
     public Housing getHousingById(Integer id) {
         return housingMapper.selectByPrimaryKey(id);
     }
+
+    @Override
+    public int deleteHousingById(Integer id) {
+        return housingMapper.deleteByPrimaryKey(id);
+    }
+
+    @Override
+    public int updateHousingById(Housing housing) {
+        return housingMapper.updateByPrimaryKeySelective(housing);
+    }
 }
