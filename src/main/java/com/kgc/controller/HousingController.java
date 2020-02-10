@@ -57,6 +57,7 @@ public class HousingController {
      */
     @GetMapping("view/updateHousingById")
     public Result updateHousingById(Housing housing){
+        housing.setModifyDate(new Date());  //修改时间
         int count = housingService.updateHousingById(housing);
         if (count > 0){
             return new Result(null, "请求成功", 100);

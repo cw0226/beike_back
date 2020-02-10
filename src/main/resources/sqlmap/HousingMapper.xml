@@ -6,10 +6,11 @@
     <result column="community_id" property="communityId" jdbcType="INTEGER" />
     <result column="buildings_id" property="buildingsId" jdbcType="INTEGER" />
     <result column="expect_rent" property="expectRent" jdbcType="DECIMAL" />
-    <result column="rent_type" property="rentType" jdbcType="VARCHAR" />
+    <result column="rent_type" property="rentType" jdbcType="INTEGER" />
     <result column="name" property="name" jdbcType="VARCHAR" />
     <result column="phone" property="phone" jdbcType="VARCHAR" />
-    <result column="state" property="state" jdbcType="VARCHAR" />
+    <result column="state" property="state" jdbcType="INTEGER" />
+    <result column="remark" property="remark" jdbcType="VARCHAR" />
     <result column="create_date" property="createDate" jdbcType="TIMESTAMP" />
     <result column="create_by" property="createBy" jdbcType="INTEGER" />
     <result column="modify_date" property="modifyDate" jdbcType="TIMESTAMP" />
@@ -74,8 +75,8 @@
     </where>
   </sql>
   <sql id="Base_Column_List" >
-    id, community_id, buildings_id, expect_rent, rent_type, name, phone, state, create_date, 
-    create_by, modify_date, modify_by
+    id, community_id, buildings_id, expect_rent, rent_type, name, phone, state, remark, 
+    create_date, create_by, modify_date, modify_by
   </sql>
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.kgc.pojo.HousingCriteria" >
     select
@@ -110,14 +111,14 @@
   <insert id="insert" parameterType="com.kgc.pojo.Housing" >
     insert into beike_housing (id, community_id, buildings_id, 
       expect_rent, rent_type, name, 
-      phone, state, create_date, 
-      create_by, modify_date, modify_by
-      )
+      phone, state, remark, 
+      create_date, create_by, modify_date, 
+      modify_by)
     values (#{id,jdbcType=INTEGER}, #{communityId,jdbcType=INTEGER}, #{buildingsId,jdbcType=INTEGER}, 
-      #{expectRent,jdbcType=DECIMAL}, #{rentType,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, 
-      #{phone,jdbcType=VARCHAR}, #{state,jdbcType=VARCHAR}, #{createDate,jdbcType=TIMESTAMP}, 
-      #{createBy,jdbcType=INTEGER}, #{modifyDate,jdbcType=TIMESTAMP}, #{modifyBy,jdbcType=INTEGER}
-      )
+      #{expectRent,jdbcType=DECIMAL}, #{rentType,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, 
+      #{phone,jdbcType=VARCHAR}, #{state,jdbcType=INTEGER}, #{remark,jdbcType=VARCHAR}, 
+      #{createDate,jdbcType=TIMESTAMP}, #{createBy,jdbcType=INTEGER}, #{modifyDate,jdbcType=TIMESTAMP}, 
+      #{modifyBy,jdbcType=INTEGER})
   </insert>
   <insert id="insertSelective" parameterType="com.kgc.pojo.Housing" >
     insert into beike_housing
@@ -146,6 +147,9 @@
       <if test="state != null" >
         state,
       </if>
+      <if test="remark != null" >
+        remark,
+      </if>
       <if test="createDate != null" >
         create_date,
       </if>
@@ -173,7 +177,7 @@
         #{expectRent,jdbcType=DECIMAL},
       </if>
       <if test="rentType != null" >
-        #{rentType,jdbcType=VARCHAR},
+        #{rentType,jdbcType=INTEGER},
       </if>
       <if test="name != null" >
         #{name,jdbcType=VARCHAR},
@@ -182,7 +186,10 @@
         #{phone,jdbcType=VARCHAR},
       </if>
       <if test="state != null" >
-        #{state,jdbcType=VARCHAR},
+        #{state,jdbcType=INTEGER},
+      </if>
+      <if test="remark != null" >
+        #{remark,jdbcType=VARCHAR},
       </if>
       <if test="createDate != null" >
         #{createDate,jdbcType=TIMESTAMP},
@@ -220,7 +227,7 @@
         expect_rent = #{record.expectRent,jdbcType=DECIMAL},
       </if>
       <if test="record.rentType != null" >
-        rent_type = #{record.rentType,jdbcType=VARCHAR},
+        rent_type = #{record.rentType,jdbcType=INTEGER},
       </if>
       <if test="record.name != null" >
         name = #{record.name,jdbcType=VARCHAR},
@@ -229,7 +236,10 @@
         phone = #{record.phone,jdbcType=VARCHAR},
       </if>
       <if test="record.state != null" >
-        state = #{record.state,jdbcType=VARCHAR},
+        state = #{record.state,jdbcType=INTEGER},
+      </if>
+      <if test="record.remark != null" >
+        remark = #{record.remark,jdbcType=VARCHAR},
       </if>
       <if test="record.createDate != null" >
         create_date = #{record.createDate,jdbcType=TIMESTAMP},
@@ -254,10 +264,11 @@
       community_id = #{record.communityId,jdbcType=INTEGER},
       buildings_id = #{record.buildingsId,jdbcType=INTEGER},
       expect_rent = #{record.expectRent,jdbcType=DECIMAL},
-      rent_type = #{record.rentType,jdbcType=VARCHAR},
+      rent_type = #{record.rentType,jdbcType=INTEGER},
       name = #{record.name,jdbcType=VARCHAR},
       phone = #{record.phone,jdbcType=VARCHAR},
-      state = #{record.state,jdbcType=VARCHAR},
+      state = #{record.state,jdbcType=INTEGER},
+      remark = #{record.remark,jdbcType=VARCHAR},
       create_date = #{record.createDate,jdbcType=TIMESTAMP},
       create_by = #{record.createBy,jdbcType=INTEGER},
       modify_date = #{record.modifyDate,jdbcType=TIMESTAMP},
@@ -279,7 +290,7 @@
         expect_rent = #{expectRent,jdbcType=DECIMAL},
       </if>
       <if test="rentType != null" >
-        rent_type = #{rentType,jdbcType=VARCHAR},
+        rent_type = #{rentType,jdbcType=INTEGER},
       </if>
       <if test="name != null" >
         name = #{name,jdbcType=VARCHAR},
@@ -288,7 +299,10 @@
         phone = #{phone,jdbcType=VARCHAR},
       </if>
       <if test="state != null" >
-        state = #{state,jdbcType=VARCHAR},
+        state = #{state,jdbcType=INTEGER},
+      </if>
+      <if test="remark != null" >
+        remark = #{remark,jdbcType=VARCHAR},
       </if>
       <if test="createDate != null" >
         create_date = #{createDate,jdbcType=TIMESTAMP},
@@ -310,10 +324,11 @@
     set community_id = #{communityId,jdbcType=INTEGER},
       buildings_id = #{buildingsId,jdbcType=INTEGER},
       expect_rent = #{expectRent,jdbcType=DECIMAL},
-      rent_type = #{rentType,jdbcType=VARCHAR},
+      rent_type = #{rentType,jdbcType=INTEGER},
       name = #{name,jdbcType=VARCHAR},
       phone = #{phone,jdbcType=VARCHAR},
-      state = #{state,jdbcType=VARCHAR},
+      state = #{state,jdbcType=INTEGER},
+      remark = #{remark,jdbcType=VARCHAR},
       create_date = #{createDate,jdbcType=TIMESTAMP},
       create_by = #{createBy,jdbcType=INTEGER},
       modify_date = #{modifyDate,jdbcType=TIMESTAMP},

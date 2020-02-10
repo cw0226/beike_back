@@ -14,13 +14,15 @@ public class Housing {
 
     private BigDecimal expectRent;
 
-    private String rentType;
+    private Integer rentType;
 
     private String name;
 
     private String phone;
 
-    private String state;
+    private Integer state;
+
+    private String remark;
 
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private Date createDate;
@@ -64,12 +66,12 @@ public class Housing {
         this.expectRent = expectRent;
     }
 
-    public String getRentType() {
+    public Integer getRentType() {
         return rentType;
     }
 
-    public void setRentType(String rentType) {
-        this.rentType = rentType == null ? null : rentType.trim();
+    public void setRentType(Integer rentType) {
+        this.rentType = rentType;
     }
 
     public String getName() {
@@ -88,12 +90,20 @@ public class Housing {
         this.phone = phone == null ? null : phone.trim();
     }
 
-    public String getState() {
+    public Integer getState() {
         return state;
     }
 
-    public void setState(String state) {
-        this.state = state == null ? null : state.trim();
+    public void setState(Integer state) {
+        this.state = state;
+    }
+
+    public String getRemark() {
+        return remark;
+    }
+
+    public void setRemark(String remark) {
+        this.remark = remark == null ? null : remark.trim();
     }
 
     public Date getCreateDate() {

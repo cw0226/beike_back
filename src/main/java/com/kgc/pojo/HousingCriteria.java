@@ -356,62 +356,52 @@ public class HousingCriteria {
             return (Criteria) this;
         }
 
-        public Criteria andRentTypeEqualTo(String value) {
+        public Criteria andRentTypeEqualTo(Integer value) {
             addCriterion("rent_type =", value, "rentType");
             return (Criteria) this;
         }
 
-        public Criteria andRentTypeNotEqualTo(String value) {
+        public Criteria andRentTypeNotEqualTo(Integer value) {
             addCriterion("rent_type <>", value, "rentType");
             return (Criteria) this;
         }
 
-        public Criteria andRentTypeGreaterThan(String value) {
+        public Criteria andRentTypeGreaterThan(Integer value) {
             addCriterion("rent_type >", value, "rentType");
             return (Criteria) this;
         }
 
-        public Criteria andRentTypeGreaterThanOrEqualTo(String value) {
+        public Criteria andRentTypeGreaterThanOrEqualTo(Integer value) {
             addCriterion("rent_type >=", value, "rentType");
             return (Criteria) this;
         }
 
-        public Criteria andRentTypeLessThan(String value) {
+        public Criteria andRentTypeLessThan(Integer value) {
             addCriterion("rent_type <", value, "rentType");
             return (Criteria) this;
         }
 
-        public Criteria andRentTypeLessThanOrEqualTo(String value) {
+        public Criteria andRentTypeLessThanOrEqualTo(Integer value) {
             addCriterion("rent_type <=", value, "rentType");
             return (Criteria) this;
         }
 
-        public Criteria andRentTypeLike(String value) {
-            addCriterion("rent_type like", value, "rentType");
-            return (Criteria) this;
-        }
-
-        public Criteria andRentTypeNotLike(String value) {
-            addCriterion("rent_type not like", value, "rentType");
-            return (Criteria) this;
-        }
-
-        public Criteria andRentTypeIn(List<String> values) {
+        public Criteria andRentTypeIn(List<Integer> values) {
             addCriterion("rent_type in", values, "rentType");
             return (Criteria) this;
         }
 
-        public Criteria andRentTypeNotIn(List<String> values) {
+        public Criteria andRentTypeNotIn(List<Integer> values) {
             addCriterion("rent_type not in", values, "rentType");
             return (Criteria) this;
         }
 
-        public Criteria andRentTypeBetween(String value1, String value2) {
+        public Criteria andRentTypeBetween(Integer value1, Integer value2) {
             addCriterion("rent_type between", value1, value2, "rentType");
             return (Criteria) this;
         }
 
-        public Criteria andRentTypeNotBetween(String value1, String value2) {
+        public Criteria andRentTypeNotBetween(Integer value1, Integer value2) {
             addCriterion("rent_type not between", value1, value2, "rentType");
             return (Criteria) this;
         }
@@ -566,63 +556,123 @@ public class HousingCriteria {
             return (Criteria) this;
         }
 
-        public Criteria andStateEqualTo(String value) {
+        public Criteria andStateEqualTo(Integer value) {
             addCriterion("state =", value, "state");
             return (Criteria) this;
         }
 
-        public Criteria andStateNotEqualTo(String value) {
+        public Criteria andStateNotEqualTo(Integer value) {
             addCriterion("state <>", value, "state");
             return (Criteria) this;
         }
 
-        public Criteria andStateGreaterThan(String value) {
+        public Criteria andStateGreaterThan(Integer value) {
             addCriterion("state >", value, "state");
             return (Criteria) this;
         }
 
-        public Criteria andStateGreaterThanOrEqualTo(String value) {
+        public Criteria andStateGreaterThanOrEqualTo(Integer value) {
             addCriterion("state >=", value, "state");
             return (Criteria) this;
         }
 
-        public Criteria andStateLessThan(String value) {
+        public Criteria andStateLessThan(Integer value) {
             addCriterion("state <", value, "state");
             return (Criteria) this;
         }
 
-        public Criteria andStateLessThanOrEqualTo(String value) {
+        public Criteria andStateLessThanOrEqualTo(Integer value) {
             addCriterion("state <=", value, "state");
             return (Criteria) this;
         }
 
-        public Criteria andStateLike(String value) {
-            addCriterion("state like", value, "state");
-            return (Criteria) this;
-        }
-
-        public Criteria andStateNotLike(String value) {
-            addCriterion("state not like", value, "state");
-            return (Criteria) this;
-        }
-
-        public Criteria andStateIn(List<String> values) {
+        public Criteria andStateIn(List<Integer> values) {
             addCriterion("state in", values, "state");
             return (Criteria) this;
         }
 
-        public Criteria andStateNotIn(List<String> values) {
+        public Criteria andStateNotIn(List<Integer> values) {
             addCriterion("state not in", values, "state");
             return (Criteria) this;
         }
 
-        public Criteria andStateBetween(String value1, String value2) {
+        public Criteria andStateBetween(Integer value1, Integer value2) {
             addCriterion("state between", value1, value2, "state");
             return (Criteria) this;
         }
 
-        public Criteria andStateNotBetween(String value1, String value2) {
+        public Criteria andStateNotBetween(Integer value1, Integer value2) {
             addCriterion("state not between", value1, value2, "state");
+            return (Criteria) this;
+        }
+
+        public Criteria andRemarkIsNull() {
+            addCriterion("remark is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andRemarkIsNotNull() {
+            addCriterion("remark is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andRemarkEqualTo(String value) {
+            addCriterion("remark =", value, "remark");
+            return (Criteria) this;
+        }
+
+        public Criteria andRemarkNotEqualTo(String value) {
+            addCriterion("remark <>", value, "remark");
+            return (Criteria) this;
+        }
+
+        public Criteria andRemarkGreaterThan(String value) {
+            addCriterion("remark >", value, "remark");
+            return (Criteria) this;
+        }
+
+        public Criteria andRemarkGreaterThanOrEqualTo(String value) {
+            addCriterion("remark >=", value, "remark");
+            return (Criteria) this;
+        }
+
+        public Criteria andRemarkLessThan(String value) {
+            addCriterion("remark <", value, "remark");
+            return (Criteria) this;
+        }
+
+        public Criteria andRemarkLessThanOrEqualTo(String value) {
+            addCriterion("remark <=", value, "remark");
+            return (Criteria) this;
+        }
+
+        public Criteria andRemarkLike(String value) {
+            addCriterion("remark like", value, "remark");
+            return (Criteria) this;
+        }
+
+        public Criteria andRemarkNotLike(String value) {
+            addCriterion("remark not like", value, "remark");
+            return (Criteria) this;
+        }
+
+        public Criteria andRemarkIn(List<String> values) {
+            addCriterion("remark in", values, "remark");
+            return (Criteria) this;
+        }
+
+        public Criteria andRemarkNotIn(List<String> values) {
+            addCriterion("remark not in", values, "remark");
+            return (Criteria) this;
+        }
+
+        public Criteria andRemarkBetween(String value1, String value2) {
+            addCriterion("remark between", value1, value2, "remark");
+            return (Criteria) this;
+        }
+
+        public Criteria andRemarkNotBetween(String value1, String value2) {
+            addCriterion("remark not between", value1, value2, "remark");
             return (Criteria) this;
         }
 
