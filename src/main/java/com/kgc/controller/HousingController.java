@@ -9,6 +9,7 @@ import com.kgc.pojo.Housing;
 import com.kgc.service.HousingService;
 import com.kgc.utils.Result;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -22,14 +23,23 @@ public class HousingController {
     private HousingService housingService;
 
     /**
-     * 添加房源
+     * 添加或修改房源
+     * 有id--修改房源
+     * 无id--添加房源
      * @param housing
      * @return
      */
-    @GetMapping("view/addHousing")
-    public Result addHousing(Housing housing){
-        housing.setCreateDate(new Date());  // 创建日期
-        int count = housingService.addHousing(housing);
+    @PostMapping("view/addOrUpdateHousing")
+    public Result addOrUpdateHousing(Housing housing){
+        int count = 0;
+        if (housing.getId() != null) {
+            housing.setModifyDate(new Date());  //修改时间
+            count = housingService.updateHousingById(housing);
+        } else {
+            housing.setState(1);
+            housing.setCreateDate(new Date());  // 创建日期
+            count = housingService.addHousing(housing);
+        }
         if (count > 0){
             return new Result(null, "请求成功", 100);
         }
@@ -44,21 +54,6 @@ public class HousingController {
     @GetMapping("view/deleteHousingById")
     public Result deleteHousingById(@RequestParam Integer id){
         int count = housingService.deleteHousingById(id);
-        if (count > 0){
-            return new Result(null, "请求成功", 100);
-        }
-        return new Result(null, "请求失败", 104);
-    }
-
-    /**
-     * 根据id修改房源信息
-     * @param housing
-     * @return
-     */
-    @GetMapping("view/updateHousingById")
-    public Result updateHousingById(Housing housing){
-        housing.setModifyDate(new Date());  //修改时间
-        int count = housingService.updateHousingById(housing);
         if (count > 0){
             return new Result(null, "请求成功", 100);
         }
