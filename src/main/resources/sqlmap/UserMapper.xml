@@ -5,6 +5,11 @@
     <id column="id" property="id" jdbcType="INTEGER" />
     <result column="user_name" property="userName" jdbcType="VARCHAR" />
     <result column="user_password" property="userPassword" jdbcType="VARCHAR" />
+    <result column="user_pic" property="userPic" jdbcType="VARCHAR" />
+    <result column="user_gender" property="userGender" jdbcType="INTEGER" />
+    <result column="user_phone" property="userPhone" jdbcType="VARCHAR" />
+    <result column="user_qq" property="userQq" jdbcType="INTEGER" />
+    <result column="user_weixin" property="userWeixin" jdbcType="VARCHAR" />
     <result column="user_role" property="userRole" jdbcType="VARCHAR" />
   </resultMap>
   <sql id="Example_Where_Clause" >
@@ -66,7 +71,8 @@
     </where>
   </sql>
   <sql id="Base_Column_List" >
-    id, user_name, user_password, user_role
+    id, user_name, user_password, user_pic, user_gender, user_phone, user_qq, user_weixin, 
+    user_role
   </sql>
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.kgc.pojo.UserCriteria" >
     select
@@ -100,9 +106,13 @@
   </delete>
   <insert id="insert" parameterType="com.kgc.pojo.User" >
     insert into beike_user (id, user_name, user_password, 
-      user_role)
+      user_pic, user_gender, user_phone, 
+      user_qq, user_weixin, user_role
+      )
     values (#{id,jdbcType=INTEGER}, #{userName,jdbcType=VARCHAR}, #{userPassword,jdbcType=VARCHAR}, 
-      #{userRole,jdbcType=VARCHAR})
+      #{userPic,jdbcType=VARCHAR}, #{userGender,jdbcType=INTEGER}, #{userPhone,jdbcType=VARCHAR}, 
+      #{userQq,jdbcType=INTEGER}, #{userWeixin,jdbcType=VARCHAR}, #{userRole,jdbcType=VARCHAR}
+      )
   </insert>
   <insert id="insertSelective" parameterType="com.kgc.pojo.User" >
     insert into beike_user
@@ -115,6 +125,21 @@
       </if>
       <if test="userPassword != null" >
         user_password,
+      </if>
+      <if test="userPic != null" >
+        user_pic,
+      </if>
+      <if test="userGender != null" >
+        user_gender,
+      </if>
+      <if test="userPhone != null" >
+        user_phone,
+      </if>
+      <if test="userQq != null" >
+        user_qq,
+      </if>
+      <if test="userWeixin != null" >
+        user_weixin,
       </if>
       <if test="userRole != null" >
         user_role,
@@ -129,6 +154,21 @@
       </if>
       <if test="userPassword != null" >
         #{userPassword,jdbcType=VARCHAR},
+      </if>
+      <if test="userPic != null" >
+        #{userPic,jdbcType=VARCHAR},
+      </if>
+      <if test="userGender != null" >
+        #{userGender,jdbcType=INTEGER},
+      </if>
+      <if test="userPhone != null" >
+        #{userPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="userQq != null" >
+        #{userQq,jdbcType=INTEGER},
+      </if>
+      <if test="userWeixin != null" >
+        #{userWeixin,jdbcType=VARCHAR},
       </if>
       <if test="userRole != null" >
         #{userRole,jdbcType=VARCHAR},
@@ -153,6 +193,21 @@
       <if test="record.userPassword != null" >
         user_password = #{record.userPassword,jdbcType=VARCHAR},
       </if>
+      <if test="record.userPic != null" >
+        user_pic = #{record.userPic,jdbcType=VARCHAR},
+      </if>
+      <if test="record.userGender != null" >
+        user_gender = #{record.userGender,jdbcType=INTEGER},
+      </if>
+      <if test="record.userPhone != null" >
+        user_phone = #{record.userPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="record.userQq != null" >
+        user_qq = #{record.userQq,jdbcType=INTEGER},
+      </if>
+      <if test="record.userWeixin != null" >
+        user_weixin = #{record.userWeixin,jdbcType=VARCHAR},
+      </if>
       <if test="record.userRole != null" >
         user_role = #{record.userRole,jdbcType=VARCHAR},
       </if>
@@ -166,6 +221,11 @@
     set id = #{record.id,jdbcType=INTEGER},
       user_name = #{record.userName,jdbcType=VARCHAR},
       user_password = #{record.userPassword,jdbcType=VARCHAR},
+      user_pic = #{record.userPic,jdbcType=VARCHAR},
+      user_gender = #{record.userGender,jdbcType=INTEGER},
+      user_phone = #{record.userPhone,jdbcType=VARCHAR},
+      user_qq = #{record.userQq,jdbcType=INTEGER},
+      user_weixin = #{record.userWeixin,jdbcType=VARCHAR},
       user_role = #{record.userRole,jdbcType=VARCHAR}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
@@ -180,6 +240,21 @@
       <if test="userPassword != null" >
         user_password = #{userPassword,jdbcType=VARCHAR},
       </if>
+      <if test="userPic != null" >
+        user_pic = #{userPic,jdbcType=VARCHAR},
+      </if>
+      <if test="userGender != null" >
+        user_gender = #{userGender,jdbcType=INTEGER},
+      </if>
+      <if test="userPhone != null" >
+        user_phone = #{userPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="userQq != null" >
+        user_qq = #{userQq,jdbcType=INTEGER},
+      </if>
+      <if test="userWeixin != null" >
+        user_weixin = #{userWeixin,jdbcType=VARCHAR},
+      </if>
       <if test="userRole != null" >
         user_role = #{userRole,jdbcType=VARCHAR},
       </if>
@@ -190,6 +265,11 @@
     update beike_user
     set user_name = #{userName,jdbcType=VARCHAR},
       user_password = #{userPassword,jdbcType=VARCHAR},
+      user_pic = #{userPic,jdbcType=VARCHAR},
+      user_gender = #{userGender,jdbcType=INTEGER},
+      user_phone = #{userPhone,jdbcType=VARCHAR},
+      user_qq = #{userQq,jdbcType=INTEGER},
+      user_weixin = #{userWeixin,jdbcType=VARCHAR},
       user_role = #{userRole,jdbcType=VARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
