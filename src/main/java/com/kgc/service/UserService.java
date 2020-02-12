@@ -24,4 +24,11 @@ public interface UserService {
      * @return
      */
     User selectUserByName(String name);
+
+    /**
+     * 修改资料
+     * @param user
+     * @return
+     */
+    int updUserData(User user);
 }

@@ -7,6 +7,16 @@ public class User {
 
     private String userPassword;
 
+    private String userPic;
+
+    private Integer userGender;
+
+    private String userPhone;
+
+    private Integer userQq;
+
+    private String userWeixin;
+
     private String userRole;
 
     public Integer getId() {
@@ -31,6 +41,46 @@ public class User {
 
     public void setUserPassword(String userPassword) {
         this.userPassword = userPassword == null ? null : userPassword.trim();
+    }
+
+    public String getUserPic() {
+        return userPic;
+    }
+
+    public void setUserPic(String userPic) {
+        this.userPic = userPic == null ? null : userPic.trim();
+    }
+
+    public Integer getUserGender() {
+        return userGender;
+    }
+
+    public void setUserGender(Integer userGender) {
+        this.userGender = userGender;
+    }
+
+    public String getUserPhone() {
+        return userPhone;
+    }
+
+    public void setUserPhone(String userPhone) {
+        this.userPhone = userPhone == null ? null : userPhone.trim();
+    }
+
+    public Integer getUserQq() {
+        return userQq;
+    }
+
+    public void setUserQq(Integer userQq) {
+        this.userQq = userQq;
+    }
+
+    public String getUserWeixin() {
+        return userWeixin;
+    }
+
+    public void setUserWeixin(String userWeixin) {
+        this.userWeixin = userWeixin == null ? null : userWeixin.trim();
     }
 
     public String getUserRole() {
