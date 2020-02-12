@@ -3,6 +3,7 @@ package com.kgc.controller;
 import com.alibaba.fastjson.JSONObject;
 import com.kgc.pojo.User;
 import com.kgc.service.UserService;
+import com.kgc.utils.Md5Encrypt;
 import com.kgc.utils.Result;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -45,6 +46,9 @@ public class LoginController {
     public Result addUser(User user){
         //默认为普通用户
         user.setUserRole("普通用户");
+        //md5加密
+        user.setUserPassword(Md5Encrypt.md5(user.getUserPassword()));
+
         int count = userService.addUser(user);
         if(count > 0 ){
             return new Result(null,"注册成功",100);
@@ -93,7 +97,7 @@ public class LoginController {
      */
     @PostMapping("/login")
     public Result login(@RequestParam String username, @RequestParam String password, HttpServletResponse response) throws UnsupportedEncodingException {
-        User user = userService.getUserOfLogin(username,password);
+        User user = userService.getUserOfLogin(username, Md5Encrypt.md5(password));
         if(user != null){
             //转为json格式再转码
             String fastJson = JSONObject.toJSONString(user);
