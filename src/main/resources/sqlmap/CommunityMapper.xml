@@ -1,0 +1,338 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.kgc.dao.CommunityMapper" >
+  <resultMap id="BaseResultMap" type="com.kgc.pojo.Community" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="community_name" property="communityName" jdbcType="VARCHAR" />
+    <result column="city" property="city" jdbcType="INTEGER" />
+    <result column="price" property="price" jdbcType="BIGINT" />
+    <result column="creation_date" property="creationDate" jdbcType="DATE" />
+    <result column="building_type" property="buildingType" jdbcType="VARCHAR" />
+    <result column="developer" property="developer" jdbcType="VARCHAR" />
+    <result column="management_company" property="managementCompany" jdbcType="VARCHAR" />
+    <result column="management_fee" property="managementFee" jdbcType="DOUBLE" />
+    <result column="contact_agent" property="contactAgent" jdbcType="INTEGER" />
+    <result column="buildings" property="buildings" jdbcType="INTEGER" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="modify_time" property="modifyTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, community_name, city, price, creation_date, building_type, developer, management_company, 
+    management_fee, contact_agent, buildings, create_time, modify_time
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.kgc.pojo.CommunityCriteria" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from beike_community
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from beike_community
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from beike_community
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.kgc.pojo.CommunityCriteria" >
+    delete from beike_community
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.kgc.pojo.Community" >
+    insert into beike_community (id, community_name, city, 
+      price, creation_date, building_type, 
+      developer, management_company, management_fee, 
+      contact_agent, buildings, create_time, 
+      modify_time)
+    values (#{id,jdbcType=INTEGER}, #{communityName,jdbcType=VARCHAR}, #{city,jdbcType=INTEGER}, 
+      #{price,jdbcType=BIGINT}, #{creationDate,jdbcType=DATE}, #{buildingType,jdbcType=VARCHAR}, 
+      #{developer,jdbcType=VARCHAR}, #{managementCompany,jdbcType=VARCHAR}, #{managementFee,jdbcType=DOUBLE}, 
+      #{contactAgent,jdbcType=INTEGER}, #{buildings,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{modifyTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.kgc.pojo.Community" >
+    insert into beike_community
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="communityName != null" >
+        community_name,
+      </if>
+      <if test="city != null" >
+        city,
+      </if>
+      <if test="price != null" >
+        price,
+      </if>
+      <if test="creationDate != null" >
+        creation_date,
+      </if>
+      <if test="buildingType != null" >
+        building_type,
+      </if>
+      <if test="developer != null" >
+        developer,
+      </if>
+      <if test="managementCompany != null" >
+        management_company,
+      </if>
+      <if test="managementFee != null" >
+        management_fee,
+      </if>
+      <if test="contactAgent != null" >
+        contact_agent,
+      </if>
+      <if test="buildings != null" >
+        buildings,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="modifyTime != null" >
+        modify_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="communityName != null" >
+        #{communityName,jdbcType=VARCHAR},
+      </if>
+      <if test="city != null" >
+        #{city,jdbcType=INTEGER},
+      </if>
+      <if test="price != null" >
+        #{price,jdbcType=BIGINT},
+      </if>
+      <if test="creationDate != null" >
+        #{creationDate,jdbcType=DATE},
+      </if>
+      <if test="buildingType != null" >
+        #{buildingType,jdbcType=VARCHAR},
+      </if>
+      <if test="developer != null" >
+        #{developer,jdbcType=VARCHAR},
+      </if>
+      <if test="managementCompany != null" >
+        #{managementCompany,jdbcType=VARCHAR},
+      </if>
+      <if test="managementFee != null" >
+        #{managementFee,jdbcType=DOUBLE},
+      </if>
+      <if test="contactAgent != null" >
+        #{contactAgent,jdbcType=INTEGER},
+      </if>
+      <if test="buildings != null" >
+        #{buildings,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifyTime != null" >
+        #{modifyTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.kgc.pojo.CommunityCriteria" resultType="java.lang.Integer" >
+    select count(*) from beike_community
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update beike_community
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.communityName != null" >
+        community_name = #{record.communityName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.city != null" >
+        city = #{record.city,jdbcType=INTEGER},
+      </if>
+      <if test="record.price != null" >
+        price = #{record.price,jdbcType=BIGINT},
+      </if>
+      <if test="record.creationDate != null" >
+        creation_date = #{record.creationDate,jdbcType=DATE},
+      </if>
+      <if test="record.buildingType != null" >
+        building_type = #{record.buildingType,jdbcType=VARCHAR},
+      </if>
+      <if test="record.developer != null" >
+        developer = #{record.developer,jdbcType=VARCHAR},
+      </if>
+      <if test="record.managementCompany != null" >
+        management_company = #{record.managementCompany,jdbcType=VARCHAR},
+      </if>
+      <if test="record.managementFee != null" >
+        management_fee = #{record.managementFee,jdbcType=DOUBLE},
+      </if>
+      <if test="record.contactAgent != null" >
+        contact_agent = #{record.contactAgent,jdbcType=INTEGER},
+      </if>
+      <if test="record.buildings != null" >
+        buildings = #{record.buildings,jdbcType=INTEGER},
+      </if>
+      <if test="record.createTime != null" >
+        create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.modifyTime != null" >
+        modify_time = #{record.modifyTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update beike_community
+    set id = #{record.id,jdbcType=INTEGER},
+      community_name = #{record.communityName,jdbcType=VARCHAR},
+      city = #{record.city,jdbcType=INTEGER},
+      price = #{record.price,jdbcType=BIGINT},
+      creation_date = #{record.creationDate,jdbcType=DATE},
+      building_type = #{record.buildingType,jdbcType=VARCHAR},
+      developer = #{record.developer,jdbcType=VARCHAR},
+      management_company = #{record.managementCompany,jdbcType=VARCHAR},
+      management_fee = #{record.managementFee,jdbcType=DOUBLE},
+      contact_agent = #{record.contactAgent,jdbcType=INTEGER},
+      buildings = #{record.buildings,jdbcType=INTEGER},
+      create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      modify_time = #{record.modifyTime,jdbcType=TIMESTAMP}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.kgc.pojo.Community" >
+    update beike_community
+    <set >
+      <if test="communityName != null" >
+        community_name = #{communityName,jdbcType=VARCHAR},
+      </if>
+      <if test="city != null" >
+        city = #{city,jdbcType=INTEGER},
+      </if>
+      <if test="price != null" >
+        price = #{price,jdbcType=BIGINT},
+      </if>
+      <if test="creationDate != null" >
+        creation_date = #{creationDate,jdbcType=DATE},
+      </if>
+      <if test="buildingType != null" >
+        building_type = #{buildingType,jdbcType=VARCHAR},
+      </if>
+      <if test="developer != null" >
+        developer = #{developer,jdbcType=VARCHAR},
+      </if>
+      <if test="managementCompany != null" >
+        management_company = #{managementCompany,jdbcType=VARCHAR},
+      </if>
+      <if test="managementFee != null" >
+        management_fee = #{managementFee,jdbcType=DOUBLE},
+      </if>
+      <if test="contactAgent != null" >
+        contact_agent = #{contactAgent,jdbcType=INTEGER},
+      </if>
+      <if test="buildings != null" >
+        buildings = #{buildings,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifyTime != null" >
+        modify_time = #{modifyTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.kgc.pojo.Community" >
+    update beike_community
+    set community_name = #{communityName,jdbcType=VARCHAR},
+      city = #{city,jdbcType=INTEGER},
+      price = #{price,jdbcType=BIGINT},
+      creation_date = #{creationDate,jdbcType=DATE},
+      building_type = #{buildingType,jdbcType=VARCHAR},
+      developer = #{developer,jdbcType=VARCHAR},
+      management_company = #{managementCompany,jdbcType=VARCHAR},
+      management_fee = #{managementFee,jdbcType=DOUBLE},
+      contact_agent = #{contactAgent,jdbcType=INTEGER},
+      buildings = #{buildings,jdbcType=INTEGER},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      modify_time = #{modifyTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>
