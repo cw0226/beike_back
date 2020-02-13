@@ -3,6 +3,7 @@ package com.kgc.controller;
 import com.kgc.pojo.User;
 import com.kgc.service.UserService;
 import com.kgc.utils.Result;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -15,6 +16,21 @@ import java.io.IOException;
 public class UserController extends BaseController{
     @Resource
     private UserService userService;
+
+
+    /**
+     * 根据id获取用户信息
+     * @param id
+     * @return
+     */
+    @GetMapping("/view/getUserById")
+    public Result getUserById(@RequestParam Integer id){
+        User user = userService.getUserById(id);
+        if(user != null){
+            return new Result(user,"获取用户信息成功",100);
+        }
+        return new Result(null,"获取用户信息失败",104);
+    }
 
     /**
      * 用户资料修改

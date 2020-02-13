@@ -31,4 +31,11 @@ public interface UserService {
      * @return
      */
     int updUserData(User user);
+
+    /**
+     * 根据id获取用户信息
+     * @param id
+     * @return
+     */
+    User getUserById(Integer id);
 }
