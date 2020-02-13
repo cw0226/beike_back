@@ -32,33 +32,26 @@ public class UserController extends BaseController{
         return new Result(null,"获取用户信息失败",104);
     }
 
-    /**
-     * 用户资料修改
-     * 含文件上传
-     * @param user
-     * @param multipartFile
-     * @return
-     */
-    @PostMapping("/view/updUserData")
-    public Result updUserData(User user, @RequestParam(value = "userpic",required = false) MultipartFile multipartFile) throws IOException {
+    @PostMapping("/uploadPic")
+    public Result uploadPic(User user,@RequestParam(value = "userpic") MultipartFile multipartFile)throws IOException {
         if(multipartFile != null && !multipartFile.isEmpty()){
-            String[] suffixs = {".JPEG",".PNG",".JPG"};
             String fileName = uploadFile(multipartFile);
-            String suffix = fileName.substring(fileName.lastIndexOf(".")).toUpperCase();
-            boolean flag = false;
-            //判断文件是否正确
-            for (String s:suffixs) {
-                if(suffix.equals(s)){
-                    flag = true;
-                    break;
-                }
-            }
-            if(!flag){
-                return new Result(null,"图片格式错误",104);
-            }
             //文件名上传到数据库
             user.setUserPic(fileName);
         }
+        int count = userService.updUserData(user);
+        if(count > 0){
+            return new Result(null,"资料修改成功",100);
+        }
+        return new Result(null,"资料修改失败",104);
+    }
+    /**
+     * 用户资料修改
+     * @param user
+     * @return
+     */
+    @PostMapping("/view/updUserData")
+    public Result updUserData(User user) {
         int count = userService.updUserData(user);
         if(count > 0){
             return new Result(null,"资料修改成功",100);
