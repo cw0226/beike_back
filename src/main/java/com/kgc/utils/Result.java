@@ -8,6 +8,7 @@ package com.kgc.utils;
  *      102:登录失败
  *      103:未登录
  *      104:请求不到数据
+ *      200:旧密码验证正确
  */
 public class Result {
     private Object data;        //数据
