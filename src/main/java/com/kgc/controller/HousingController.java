@@ -8,6 +8,7 @@ import com.github.pagehelper.PageInfo;
 import com.kgc.pojo.Building;
 import com.kgc.pojo.Community;
 import com.kgc.pojo.Housing;
+import com.kgc.pojo.HousingEx;
 import com.kgc.service.BuildingService;
 import com.kgc.service.CommunityService;
 import com.kgc.service.HousingService;
@@ -78,10 +79,10 @@ public class HousingController {
      * @return
      */
     @GetMapping("view/getHousingList")
-    public Result getHousingList(@RequestParam Integer page,@RequestParam Integer limit, Housing housing){
+    public Result getHousingList(@RequestParam Integer page,@RequestParam Integer limit, HousingEx housingEx){
         PageHelper.startPage(page, limit);
-        List<Housing> housingList = housingService.getHousingList(housing);
-        PageInfo<Housing> pageInfo = new PageInfo<Housing>(housingList);
+        List<HousingEx> housingExList = housingService.getHousingExList(housingEx);
+        PageInfo<HousingEx> pageInfo = new PageInfo<HousingEx>(housingExList);
         return new Result(pageInfo, "请求成功", 100);
     }
 
@@ -91,7 +92,7 @@ public class HousingController {
      */
     @GetMapping("view/getHousingById")
     public Result getHousingById(@RequestParam Integer id){
-        Housing housing = housingService.getHousingById(id);
-        return new Result(housing, "请求成功", 100);
+        HousingEx housingEx = housingService.getHousingExById(id);
+        return new Result(housingEx, "请求成功", 100);
     }
 }

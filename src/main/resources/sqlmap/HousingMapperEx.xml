@@ -20,5 +20,25 @@
     <result column="uint" property="uint" jdbcType="VARCHAR" />
     <result column="room_number" property="roomNumber" jdbcType="VARCHAR" />
   </resultMap>
+  <select id="getHousingExList" resultMap="BaseResultMap" parameterType="HousingEx">
+    SELECT bh.id,community_id,buildings_id,expect_rent,rent_type,name,phone,state,remark,
+        create_date,create_by,modify_date,modify_by,community_name,block,uint,room_number
+    FROM beike_housing AS bh
+    INNER JOIN beike_building AS bb ON bh.buildings_id = bb.id
+	INNER JOIN beike_community AS bc ON bh.community_id = bc.id
+	<where>
+      <if test="createBy != null">
+        and create_by = #{createBy}
+      </if>
+    </where>
+  </select>
 
+  <select id="getHousingExById" resultMap="BaseResultMap" parameterType="HousingEx">
+    SELECT bh.id,community_id,buildings_id,expect_rent,rent_type,name,phone,state,remark,
+    create_date,create_by,modify_date,modify_by,community_name,block,uint,room_number
+    FROM beike_housing AS bh
+    INNER JOIN beike_building AS bb ON bh.buildings_id = bb.id
+    INNER JOIN beike_community AS bc ON bh.community_id = bc.id
+    where bh.id = #{id}
+  </select>
 </mapper>

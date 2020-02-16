@@ -1,5 +1,11 @@
 package com.kgc.dao;
 
-public interface HousingMapperEx {
+import com.kgc.pojo.HousingEx;
 
+import java.util.List;
+
+public interface HousingMapperEx {
+    List<HousingEx> getHousingExList(HousingEx housingEx);
+
+    HousingEx getHousingExById(Integer id);
 }
