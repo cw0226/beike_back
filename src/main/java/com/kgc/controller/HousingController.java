@@ -5,7 +5,11 @@ package com.kgc.controller;
 
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
+import com.kgc.pojo.Building;
+import com.kgc.pojo.Community;
 import com.kgc.pojo.Housing;
+import com.kgc.service.BuildingService;
+import com.kgc.service.CommunityService;
 import com.kgc.service.HousingService;
 import com.kgc.utils.Result;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -21,6 +25,10 @@ import java.util.List;
 public class HousingController {
     @Resource
     private HousingService housingService;
+    @Resource
+    private BuildingService buildingService;
+    @Resource
+    private CommunityService communityService;
 
     /**
      * 添加或修改房源
@@ -30,7 +38,12 @@ public class HousingController {
      * @return
      */
     @PostMapping("view/addOrUpdateHousing")
-    public Result addOrUpdateHousing(Housing housing){
+    public Result addOrUpdateHousing(Housing housing, Building building, Community community){
+        int communityId = communityService.addCommunity(community);
+        housing.setCommunityId(communityId);
+        building.setCommunityBuilding(communityId);
+        int buildingId = buildingService.addBuilding(building);
+        housing.setBuildingsId(buildingId);
         int count = 0;
         if (housing.getId() != null) {
             housing.setModifyDate(new Date());  //修改时间
