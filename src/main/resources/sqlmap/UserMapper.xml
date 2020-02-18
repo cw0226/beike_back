@@ -114,7 +114,7 @@
       #{userQq,jdbcType=INTEGER}, #{userWeixin,jdbcType=VARCHAR}, #{userRole,jdbcType=VARCHAR}
       )
   </insert>
-  <insert id="insertSelective" parameterType="com.kgc.pojo.User" >
+  <insert id="insertSelective" parameterType="com.kgc.pojo.User" useGeneratedKeys="true" keyProperty="id" >
     insert into beike_user
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="id != null" >

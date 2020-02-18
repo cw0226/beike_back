@@ -4,6 +4,9 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.io.File;
 import java.io.IOException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.UUID;
 
 public class BaseController {
@@ -27,5 +30,15 @@ public class BaseController {
         multipartFile.transferTo(file);
 
         return newFileName;
+    }
+    // 获取两个时间相差分钟数
+    public long getTime(Date oldTime, Date newTime) throws ParseException {
+
+        SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        long NTime =df.parse(df.format(newTime)).getTime();
+        //从对象中拿到时间
+        long OTime = df.parse(df.format(oldTime)).getTime();
+        long diff=(NTime-OTime)/1000/60;
+        return diff;
     }
 }

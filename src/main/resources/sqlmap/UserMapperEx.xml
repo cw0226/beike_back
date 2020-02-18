@@ -10,4 +10,7 @@
     <select id="selectUserByName" resultMap="BaseResultMap">
         select * from beike_user where user_name = #{name}
     </select>
+    <select id="selectUserByPhone" resultMap="BaseResultMap">
+        select * from beike_user where user_phone = #{phone}
+    </select>
 </mapper>

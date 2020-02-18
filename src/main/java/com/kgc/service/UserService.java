@@ -38,4 +38,11 @@ public interface UserService {
      * @return
      */
     User getUserById(Integer id);
+
+    /**
+     * 根据手机号查询用户
+     * @param phone
+     * @return
+     */
+    User selectUSerByPhone(String phone);
 }
