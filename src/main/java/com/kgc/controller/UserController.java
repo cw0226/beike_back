@@ -21,6 +21,34 @@ public class UserController extends BaseController{
 
 
     /**
+     * 查询手机号是否存在
+     * @param phone
+     * @return
+     */
+    @GetMapping("/view/selectPhoneisExist")
+    public Result selectPhoneisExist(String phone){
+        User user = userService.selectUSerByPhone(phone);
+        if(user != null){
+            return new Result(user,"手机号已存在",100);
+        }
+        return new Result(null,"手机号不存在",104);
+    }
+
+    /**
+     * 根据用户名查询用户是否存在
+     * @param name
+     * @return
+     */
+    @GetMapping("/selectUserByName")
+    public Result selectUserByName(String name){
+        User user = userService.selectUserByName(name);
+        if(user != null){
+            return new Result(user,"用户存在",100);
+        }
+        return new Result(null,"用户不存在",104);
+    }
+
+    /**
      * 根据id获取用户信息
      * @param id
      * @return

@@ -8,6 +8,7 @@ import com.kgc.service.ValidateCodeService;
 import com.kgc.utils.Md5Encrypt;
 import com.kgc.utils.Result;
 import com.kgc.utils.SendValidateCode;
+import org.hibernate.validator.constraints.EAN;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -41,7 +42,7 @@ public class LoginController extends BaseController {
      * @throws ParseException
      */
     @PostMapping("/selectPhoneAndCode")
-    public Result selectPhoneAndCode(String phone,String code,HttpServletResponse response) throws ParseException, UnsupportedEncodingException {
+    public Result selectPhoneAndCode(@RequestParam String phone, @RequestParam String code, HttpServletResponse response) throws ParseException, UnsupportedEncodingException {
         //查询验证码是否存在
         ValidateCode validateCode = validateCodeService.selectCodeIsExist(code);
         if(validateCode != null){
@@ -89,19 +90,7 @@ public class LoginController extends BaseController {
         return new Result(null,"验证码错误",104);
     }
 
-    /**
-     * 根据用户名查询用户是否存在
-     * @param name
-     * @return
-     */
-    @GetMapping("/selectUserByName")
-    public Result selectUserByName(String name){
-        User user = userService.selectUserByName(name);
-        if(user != null){
-            return new Result(user,"用户存在",100);
-        }
-        return new Result(null,"用户不存在",104);
-    }
+
 
     /**
      * 手机号注册发送短信
