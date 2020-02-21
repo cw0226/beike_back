@@ -33,6 +33,41 @@ public class LoginController extends BaseController {
 
 
     /**
+     * 根据手机验证码修改密码
+     * @param phone
+     * @param code
+     * @return
+     */
+    @PostMapping("/updatePwdAsPhone")
+    public Result updatePwdAsPhone(@RequestParam String phone,@RequestParam String code,@RequestParam String userPassword) throws ParseException {
+        //查询验证码是否存在
+        ValidateCode validateCode = validateCodeService.selectCodeIsExist(code);
+        if(validateCode != null) {
+            //时间在5分钟之内
+            if (getTime(validateCode.getDate(), new Date()) <= 5) {
+                Integer id = null;
+                //查询手机号是否存在
+                User user = userService.selectUSerByPhone(phone);
+                //对验证码进行清除
+                validateCodeService.deleteByCode(code);
+
+                if (user != null) {  //存在,修改密码
+                    user.setUserPassword(Md5Encrypt.md5(userPassword));
+                    int count = userService.updUserData(user);
+
+                    if (count > 0) {  //修改成功
+                        return new Result(null, "修改成功", 100);
+                    }
+                    return new Result(null, "修改失败", 104);
+                } else { //不存在
+                    return new Result(null, "该手机号未注册", 104);
+                }
+            }
+        }
+        return new Result(null,"验证码错误",104);
+    }
+
+    /**
      * 查询验证码和手机号是否存在
      * 验证码是否过期
      * 没问题进行登录
@@ -84,7 +119,6 @@ public class LoginController extends BaseController {
                 }else{
                     return new Result(null, "登录失败", 104);
                 }
-
             }
         }
         return new Result(null,"验证码错误",104);
