@@ -1,5 +1,7 @@
 package com.kgc.pojo;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import java.util.Date;
 
 public class Agent {
@@ -15,8 +17,10 @@ public class Agent {
 
     private String agentPic;
 
+    @JsonFormat(pattern = "yyyy-MM-dd hh:mm:ss")
     private Date createTime;
 
+    @JsonFormat(pattern = "yyyy-MM-dd hh:mm:ss")
     private Date updateTime;
 
     public Integer getId() {
