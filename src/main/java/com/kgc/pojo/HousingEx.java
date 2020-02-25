@@ -8,6 +8,7 @@ public class HousingEx extends Housing {
     private String block;   // 楼栋号
     private String uint;    // 单元号
     private String roomNumber;  // 门牌号
+    private String city;    // 城市
 
     public String getCommunityName() {
         return communityName;
@@ -39,5 +40,13 @@ public class HousingEx extends Housing {
 
     public void setRoomNumber(String roomNumber) {
         this.roomNumber = roomNumber;
+    }
+
+    public String getCity() {
+        return city;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
     }
 }

@@ -40,4 +40,11 @@ public class CommunityServiceImpl implements CommunityService {
         }
         return 0;
     }
+
+    @Override
+    public List<Community> getCommunityByCommunityName(String communityName) {
+        CommunityCriteria communityCriteria = new CommunityCriteria();
+        communityCriteria.createCriteria().andCommunityNameLike(communityName);
+        return communityMapper.selectByExample(communityCriteria);
+    }
 }

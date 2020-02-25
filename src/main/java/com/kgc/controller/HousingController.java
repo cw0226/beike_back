@@ -47,11 +47,11 @@ public class HousingController {
         housing.setBuildingsId(buildingId);
         int count = 0;
         if (housing.getId() != null) {
-            housing.setModifyDate(new Date());  //修改时间
+            housing.setCheckTime(new Date());  //修改时间
             count = housingService.updateHousingById(housing);
         } else {
-            housing.setState(1);
-            housing.setCreateDate(new Date());  // 创建日期
+            housing.setCheckState((byte) 1);
+            housing.setCreateTime(new Date());  // 创建日期
             count = housingService.addHousing(housing);
         }
         if (count > 0){
