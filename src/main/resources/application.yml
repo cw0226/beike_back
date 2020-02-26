@@ -12,9 +12,9 @@ spring:
       filters: stat
       driver-class-name: com.mysql.jdbc.Driver
       #基本属性
-      url: jdbc:mysql://rm-wz92btviuy4ab96e4lo.mysql.rds.aliyuncs.com/beike?useUnicode=true&characterEncoding=UTF-8&serverTimezone=GMT%2B8
-      username: root
-      password: root1234
+      url: jdbc:mysql://rm-bp1c7uconz8631uh3qo.mysql.rds.aliyuncs.com/beike?useUnicode=true&characterEncoding=UTF-8&serverTimezone=GMT%2B8
+      username: beike
+      password: beike_123
       #配置初始化大小/最小/最大
       initial-size: 1
       min-idle: 1
