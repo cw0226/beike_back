@@ -9,6 +9,8 @@ import com.kgc.utils.Md5Encrypt;
 import com.kgc.utils.Result;
 import com.kgc.utils.SendValidateCode;
 import org.hibernate.validator.constraints.EAN;
+import org.springframework.cache.annotation.Cacheable;
+import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -22,7 +24,9 @@ import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
 import java.net.URLEncoder;
 import java.text.ParseException;
+import java.time.Duration;
 import java.util.Date;
+import java.util.UUID;
 
 @RestController
 public class LoginController extends BaseController {
@@ -30,6 +34,8 @@ public class LoginController extends BaseController {
     private UserService userService;
     @Resource
     private ValidateCodeService validateCodeService;
+    @Resource
+    private RedisTemplate<String,Object> redisTemplate;
 
 
     /**
@@ -107,15 +113,12 @@ public class LoginController extends BaseController {
                 validateCodeService.deleteByCode(code);
 
                 if (user2 != null) {
-                    //转为json格式再转码
-                    String fastJson = JSONObject.toJSONString(user2);
-                    fastJson = URLEncoder.encode(fastJson, "UTF-8");
-                    //存入Cookie
-                    Cookie cookie = new Cookie("USER", fastJson);
-                    cookie.setPath("/");
-                    cookie.setMaxAge(60 * 30);
-                    response.addCookie(cookie);
-                    return new Result(user2, "登录成功", 100);
+                    //生成token令牌
+                    String token = UUID.randomUUID()+"";
+                    //把token令牌存入redis
+                    redisTemplate.opsForValue().set(token,user2,Duration.ofMinutes(30L));
+
+                    return new Result(token, "登录成功", 100);
                 }else{
                     return new Result(null, "登录失败", 104);
                 }
@@ -170,55 +173,48 @@ public class LoginController extends BaseController {
      * @return
      */
     @GetMapping("/view/logOut")
-    public Result logOut(HttpServletResponse response){
-        Cookie cookie = new Cookie("USER","");
-        cookie.setPath("/");
-        cookie.setMaxAge(1);
-        response.addCookie(cookie);
-        return new Result(null,"已退出",100);
+    public Result logOut(HttpServletRequest request){
+        //获取token令牌
+        String token = request.getHeader("token");
+        //将token令牌从redis中删除
+        Boolean delete = redisTemplate.delete(token);
+
+        return new Result(delete,"已退出",100);
     }
 
     /**
-     * 查看Cookie是否有用户
+     * 查看redis是否有用户
      * @return
      */
     @GetMapping("/view/getUserOfLogin")
     public Result getUserOfLogin(HttpServletRequest request) throws UnsupportedEncodingException {
-        Cookie[] cookies = request.getCookies();
-        if (cookies != null && cookies.length >0) {
-            for (Cookie cookie: cookies) {
-                if("USER".equals(cookie.getName())){
-                    String user =URLDecoder.decode(cookie.getValue(),"UTF-8");
-                    return new Result(user,"Cookie获取成功",100);
-                }
-            }
+        //获取token令牌
+        String token = request.getHeader("token");
+        //从redis查询用户
+        Object user = redisTemplate.opsForValue().get(token);
+        if(user != null ){
+            return new Result(user,"获取登录用户成功",100);
         }
-        return new Result(null,"Cookie未获取到",104);
+        return new Result(null,"获取登录用户失败",104);
     }
 
     /**
      * 登录
      * @param username
      * @param password
-     * @param response
      * @return
      * @throws UnsupportedEncodingException
      */
     @PostMapping("/login")
-    public Result login(@RequestParam String username, @RequestParam String password, HttpServletResponse response) throws UnsupportedEncodingException {
+    public Result login(@RequestParam String username, @RequestParam String password) throws UnsupportedEncodingException {
         User user = userService.getUserOfLogin(username, Md5Encrypt.md5(password));
         if(user != null){
-            //转为json格式再转码
-            String fastJson = JSONObject.toJSONString(user);
-            fastJson = URLEncoder.encode(fastJson,"UTF-8");
+            //生成token令牌
+            String token = UUID.randomUUID()+"";
+            //存入redis
+            redisTemplate.opsForValue().set(token,user, Duration.ofMinutes(30L));
 
-            //将用户存入Cookie
-            Cookie cookie = new Cookie("USER",fastJson);
-            cookie.setPath("/");
-            cookie.setMaxAge(60*30);
-            response.addCookie(cookie);
-
-            return new Result(user,"登录成功！",100);
+            return new Result(token,"登录成功！",100);
         }
         return new Result(null,"用户或密码错误！",102);
     }
