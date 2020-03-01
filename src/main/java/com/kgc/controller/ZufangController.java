@@ -1,9 +1,12 @@
 package com.kgc.controller;
 
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import com.kgc.pojo.ZufangEx;
 import com.kgc.service.ZufangService;
 import com.kgc.utils.Result;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
@@ -22,10 +25,10 @@ public class ZufangController {
      * @return
      */
     @GetMapping("getZufangList")
-    public Result getZufangList(){
-        List<ZufangEx> zufangExList = zufangService.getZufangList();
-        if(zufangExList != null ){
-            return new Result(zufangExList,"获取租房列表成功",100);
+    public Result getZufangList(@RequestParam Integer pageNum,@RequestParam Integer pageSize){
+        PageInfo<ZufangEx> pageInfo = zufangService.getZufangList(pageNum,pageSize);
+        if(pageInfo != null ){
+            return new Result(pageInfo,"获取租房列表成功",100);
         }
         return new Result(null,"获取租房列表失败",104);
     }

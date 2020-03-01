@@ -1,5 +1,7 @@
 package com.kgc.service.impl;
 
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import com.kgc.dao.ZufangMapperEx;
 import com.kgc.pojo.ZufangEx;
 import com.kgc.service.ZufangService;
@@ -14,9 +16,12 @@ public class ZufangServiceImpl implements ZufangService {
     @Resource
     private ZufangMapperEx zufangMapperEx;
 
-    @Cacheable(value = "zufang",key = "'getZufangList'")
+    @Cacheable(value = "zufang",key = "'getZufangList'+#pageNum+','+#pageSize")
     @Override
-    public List<ZufangEx> getZufangList() {
-        return zufangMapperEx.selectZufang();
+    public PageInfo<ZufangEx> getZufangList(Integer pageNum,Integer pageSize) {
+        //分页插件
+        PageHelper.startPage(pageNum,pageSize);
+        List<ZufangEx> zufangExList = zufangMapperEx.selectZufang();
+        return new PageInfo(zufangExList);
     }
 }
