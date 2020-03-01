@@ -1,0 +1,370 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.kgc.dao.ZufangMapper" >
+  <resultMap id="BaseResultMap" type="com.kgc.pojo.Zufang" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="title" property="title" jdbcType="VARCHAR" />
+    <result column="rental" property="rental" jdbcType="INTEGER" />
+    <result column="street_id" property="streetId" jdbcType="INTEGER" />
+    <result column="village" property="village" jdbcType="VARCHAR" />
+    <result column="square" property="square" jdbcType="INTEGER" />
+    <result column="orientations" property="orientations" jdbcType="VARCHAR" />
+    <result column="room" property="room" jdbcType="INTEGER" />
+    <result column="hall" property="hall" jdbcType="INTEGER" />
+    <result column="toilet" property="toilet" jdbcType="INTEGER" />
+    <result column="rent" property="rent" jdbcType="INTEGER" />
+    <result column="terrace" property="terrace" jdbcType="VARCHAR" />
+    <result column="servicing_time" property="servicingTime" jdbcType="TIMESTAMP" />
+    <result column="hostPic" property="hostpic" jdbcType="VARCHAR" />
+    <result column="feature" property="feature" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, title, rental, street_id, village, square, orientations, room, hall, toilet, 
+    rent, terrace, servicing_time, hostPic, feature
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.kgc.pojo.ZufangCriteria" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from beike_zufang
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from beike_zufang
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from beike_zufang
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.kgc.pojo.ZufangCriteria" >
+    delete from beike_zufang
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.kgc.pojo.Zufang" >
+    insert into beike_zufang (id, title, rental, 
+      street_id, village, square, 
+      orientations, room, hall, 
+      toilet, rent, terrace, 
+      servicing_time, hostPic, feature
+      )
+    values (#{id,jdbcType=INTEGER}, #{title,jdbcType=VARCHAR}, #{rental,jdbcType=INTEGER}, 
+      #{streetId,jdbcType=INTEGER}, #{village,jdbcType=VARCHAR}, #{square,jdbcType=INTEGER}, 
+      #{orientations,jdbcType=VARCHAR}, #{room,jdbcType=INTEGER}, #{hall,jdbcType=INTEGER}, 
+      #{toilet,jdbcType=INTEGER}, #{rent,jdbcType=INTEGER}, #{terrace,jdbcType=VARCHAR}, 
+      #{servicingTime,jdbcType=TIMESTAMP}, #{hostpic,jdbcType=VARCHAR}, #{feature,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.kgc.pojo.Zufang" >
+    insert into beike_zufang
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="title != null" >
+        title,
+      </if>
+      <if test="rental != null" >
+        rental,
+      </if>
+      <if test="streetId != null" >
+        street_id,
+      </if>
+      <if test="village != null" >
+        village,
+      </if>
+      <if test="square != null" >
+        square,
+      </if>
+      <if test="orientations != null" >
+        orientations,
+      </if>
+      <if test="room != null" >
+        room,
+      </if>
+      <if test="hall != null" >
+        hall,
+      </if>
+      <if test="toilet != null" >
+        toilet,
+      </if>
+      <if test="rent != null" >
+        rent,
+      </if>
+      <if test="terrace != null" >
+        terrace,
+      </if>
+      <if test="servicingTime != null" >
+        servicing_time,
+      </if>
+      <if test="hostpic != null" >
+        hostPic,
+      </if>
+      <if test="feature != null" >
+        feature,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="title != null" >
+        #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="rental != null" >
+        #{rental,jdbcType=INTEGER},
+      </if>
+      <if test="streetId != null" >
+        #{streetId,jdbcType=INTEGER},
+      </if>
+      <if test="village != null" >
+        #{village,jdbcType=VARCHAR},
+      </if>
+      <if test="square != null" >
+        #{square,jdbcType=INTEGER},
+      </if>
+      <if test="orientations != null" >
+        #{orientations,jdbcType=VARCHAR},
+      </if>
+      <if test="room != null" >
+        #{room,jdbcType=INTEGER},
+      </if>
+      <if test="hall != null" >
+        #{hall,jdbcType=INTEGER},
+      </if>
+      <if test="toilet != null" >
+        #{toilet,jdbcType=INTEGER},
+      </if>
+      <if test="rent != null" >
+        #{rent,jdbcType=INTEGER},
+      </if>
+      <if test="terrace != null" >
+        #{terrace,jdbcType=VARCHAR},
+      </if>
+      <if test="servicingTime != null" >
+        #{servicingTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="hostpic != null" >
+        #{hostpic,jdbcType=VARCHAR},
+      </if>
+      <if test="feature != null" >
+        #{feature,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.kgc.pojo.ZufangCriteria" resultType="java.lang.Integer" >
+    select count(*) from beike_zufang
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update beike_zufang
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.title != null" >
+        title = #{record.title,jdbcType=VARCHAR},
+      </if>
+      <if test="record.rental != null" >
+        rental = #{record.rental,jdbcType=INTEGER},
+      </if>
+      <if test="record.streetId != null" >
+        street_id = #{record.streetId,jdbcType=INTEGER},
+      </if>
+      <if test="record.village != null" >
+        village = #{record.village,jdbcType=VARCHAR},
+      </if>
+      <if test="record.square != null" >
+        square = #{record.square,jdbcType=INTEGER},
+      </if>
+      <if test="record.orientations != null" >
+        orientations = #{record.orientations,jdbcType=VARCHAR},
+      </if>
+      <if test="record.room != null" >
+        room = #{record.room,jdbcType=INTEGER},
+      </if>
+      <if test="record.hall != null" >
+        hall = #{record.hall,jdbcType=INTEGER},
+      </if>
+      <if test="record.toilet != null" >
+        toilet = #{record.toilet,jdbcType=INTEGER},
+      </if>
+      <if test="record.rent != null" >
+        rent = #{record.rent,jdbcType=INTEGER},
+      </if>
+      <if test="record.terrace != null" >
+        terrace = #{record.terrace,jdbcType=VARCHAR},
+      </if>
+      <if test="record.servicingTime != null" >
+        servicing_time = #{record.servicingTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.hostpic != null" >
+        hostPic = #{record.hostpic,jdbcType=VARCHAR},
+      </if>
+      <if test="record.feature != null" >
+        feature = #{record.feature,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update beike_zufang
+    set id = #{record.id,jdbcType=INTEGER},
+      title = #{record.title,jdbcType=VARCHAR},
+      rental = #{record.rental,jdbcType=INTEGER},
+      street_id = #{record.streetId,jdbcType=INTEGER},
+      village = #{record.village,jdbcType=VARCHAR},
+      square = #{record.square,jdbcType=INTEGER},
+      orientations = #{record.orientations,jdbcType=VARCHAR},
+      room = #{record.room,jdbcType=INTEGER},
+      hall = #{record.hall,jdbcType=INTEGER},
+      toilet = #{record.toilet,jdbcType=INTEGER},
+      rent = #{record.rent,jdbcType=INTEGER},
+      terrace = #{record.terrace,jdbcType=VARCHAR},
+      servicing_time = #{record.servicingTime,jdbcType=TIMESTAMP},
+      hostPic = #{record.hostpic,jdbcType=VARCHAR},
+      feature = #{record.feature,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.kgc.pojo.Zufang" >
+    update beike_zufang
+    <set >
+      <if test="title != null" >
+        title = #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="rental != null" >
+        rental = #{rental,jdbcType=INTEGER},
+      </if>
+      <if test="streetId != null" >
+        street_id = #{streetId,jdbcType=INTEGER},
+      </if>
+      <if test="village != null" >
+        village = #{village,jdbcType=VARCHAR},
+      </if>
+      <if test="square != null" >
+        square = #{square,jdbcType=INTEGER},
+      </if>
+      <if test="orientations != null" >
+        orientations = #{orientations,jdbcType=VARCHAR},
+      </if>
+      <if test="room != null" >
+        room = #{room,jdbcType=INTEGER},
+      </if>
+      <if test="hall != null" >
+        hall = #{hall,jdbcType=INTEGER},
+      </if>
+      <if test="toilet != null" >
+        toilet = #{toilet,jdbcType=INTEGER},
+      </if>
+      <if test="rent != null" >
+        rent = #{rent,jdbcType=INTEGER},
+      </if>
+      <if test="terrace != null" >
+        terrace = #{terrace,jdbcType=VARCHAR},
+      </if>
+      <if test="servicingTime != null" >
+        servicing_time = #{servicingTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="hostpic != null" >
+        hostPic = #{hostpic,jdbcType=VARCHAR},
+      </if>
+      <if test="feature != null" >
+        feature = #{feature,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.kgc.pojo.Zufang" >
+    update beike_zufang
+    set title = #{title,jdbcType=VARCHAR},
+      rental = #{rental,jdbcType=INTEGER},
+      street_id = #{streetId,jdbcType=INTEGER},
+      village = #{village,jdbcType=VARCHAR},
+      square = #{square,jdbcType=INTEGER},
+      orientations = #{orientations,jdbcType=VARCHAR},
+      room = #{room,jdbcType=INTEGER},
+      hall = #{hall,jdbcType=INTEGER},
+      toilet = #{toilet,jdbcType=INTEGER},
+      rent = #{rent,jdbcType=INTEGER},
+      terrace = #{terrace,jdbcType=VARCHAR},
+      servicing_time = #{servicingTime,jdbcType=TIMESTAMP},
+      hostPic = #{hostpic,jdbcType=VARCHAR},
+      feature = #{feature,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>
