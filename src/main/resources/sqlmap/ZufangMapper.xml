@@ -17,6 +17,7 @@
     <result column="servicing_time" property="servicingTime" jdbcType="TIMESTAMP" />
     <result column="hostPic" property="hostpic" jdbcType="VARCHAR" />
     <result column="feature" property="feature" jdbcType="VARCHAR" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
   </resultMap>
   <sql id="Example_Where_Clause" >
     <where >
@@ -78,7 +79,7 @@
   </sql>
   <sql id="Base_Column_List" >
     id, title, rental, street_id, village, square, orientations, room, hall, toilet, 
-    rent, terrace, servicing_time, hostPic, feature
+    rent, terrace, servicing_time, hostPic, feature, create_time
   </sql>
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.kgc.pojo.ZufangCriteria" >
     select
@@ -115,14 +116,14 @@
       street_id, village, square, 
       orientations, room, hall, 
       toilet, rent, terrace, 
-      servicing_time, hostPic, feature
-      )
+      servicing_time, hostPic, feature, 
+      create_time)
     values (#{id,jdbcType=INTEGER}, #{title,jdbcType=VARCHAR}, #{rental,jdbcType=INTEGER}, 
       #{streetId,jdbcType=INTEGER}, #{village,jdbcType=VARCHAR}, #{square,jdbcType=INTEGER}, 
       #{orientations,jdbcType=VARCHAR}, #{room,jdbcType=INTEGER}, #{hall,jdbcType=INTEGER}, 
       #{toilet,jdbcType=INTEGER}, #{rent,jdbcType=INTEGER}, #{terrace,jdbcType=VARCHAR}, 
-      #{servicingTime,jdbcType=TIMESTAMP}, #{hostpic,jdbcType=VARCHAR}, #{feature,jdbcType=VARCHAR}
-      )
+      #{servicingTime,jdbcType=TIMESTAMP}, #{hostpic,jdbcType=VARCHAR}, #{feature,jdbcType=VARCHAR}, 
+      #{createTime,jdbcType=TIMESTAMP})
   </insert>
   <insert id="insertSelective" parameterType="com.kgc.pojo.Zufang" >
     insert into beike_zufang
@@ -172,6 +173,9 @@
       <if test="feature != null" >
         feature,
       </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
       <if test="id != null" >
@@ -218,6 +222,9 @@
       </if>
       <if test="feature != null" >
         #{feature,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
       </if>
     </trim>
   </insert>
@@ -275,6 +282,9 @@
       <if test="record.feature != null" >
         feature = #{record.feature,jdbcType=VARCHAR},
       </if>
+      <if test="record.createTime != null" >
+        create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      </if>
     </set>
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
@@ -296,7 +306,8 @@
       terrace = #{record.terrace,jdbcType=VARCHAR},
       servicing_time = #{record.servicingTime,jdbcType=TIMESTAMP},
       hostPic = #{record.hostpic,jdbcType=VARCHAR},
-      feature = #{record.feature,jdbcType=VARCHAR}
+      feature = #{record.feature,jdbcType=VARCHAR},
+      create_time = #{record.createTime,jdbcType=TIMESTAMP}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -346,6 +357,9 @@
       <if test="feature != null" >
         feature = #{feature,jdbcType=VARCHAR},
       </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
@@ -364,7 +378,8 @@
       terrace = #{terrace,jdbcType=VARCHAR},
       servicing_time = #{servicingTime,jdbcType=TIMESTAMP},
       hostPic = #{hostpic,jdbcType=VARCHAR},
-      feature = #{feature,jdbcType=VARCHAR}
+      feature = #{feature,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP}
     where id = #{id,jdbcType=INTEGER}
   </update>
 </mapper>

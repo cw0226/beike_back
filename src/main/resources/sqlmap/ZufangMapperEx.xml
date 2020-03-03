@@ -35,7 +35,12 @@
                 <if test="streetId != null and streetId != ''">
                     and zufang.street_id = #{streetId}
                 </if>
+                <if test="rental != null and rental != ''">
+                    and zufang.rental = #{rental}
+                </if>
             </where>
-
+                <if test=" orderBy != null and orderBy != ''">
+                    ORDER BY ${orderBy} DESC
+                </if>
     </select>
 </mapper>

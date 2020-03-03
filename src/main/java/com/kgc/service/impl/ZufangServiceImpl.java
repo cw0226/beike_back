@@ -16,12 +16,12 @@ public class ZufangServiceImpl implements ZufangService {
     @Resource
     private ZufangMapperEx zufangMapperEx;
 
-    @Cacheable(value = "zufang",key = "'getZufangList'+#pageNum+','+#pageSize+','+#areaId+','+#streetId")
+    @Cacheable(value = "zufang",key = "'getZufangList'+#pageNum+','+#pageSize+','+#areaId+','+#streetId+','+#rental+','+#orderBy")
     @Override
-    public PageInfo<ZufangEx> getZufangList(Integer pageNum,Integer pageSize,Integer areaId,Integer streetId) {
+    public PageInfo<ZufangEx> getZufangList(Integer pageNum,Integer pageSize,Integer areaId,Integer streetId,Integer rental,String orderBy) {
         //分页插件
         PageHelper.startPage(pageNum,pageSize);
-        List<ZufangEx> zufangExList = zufangMapperEx.selectZufang(areaId,streetId);
+        List<ZufangEx> zufangExList = zufangMapperEx.selectZufang(areaId,streetId,rental,orderBy);
         return new PageInfo(zufangExList);
     }
 }

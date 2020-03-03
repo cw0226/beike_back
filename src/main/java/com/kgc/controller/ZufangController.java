@@ -27,8 +27,8 @@ public class ZufangController {
      * @return
      */
     @GetMapping("getZufangList")
-    public Result getZufangList(@RequestParam Integer pageNum,@RequestParam Integer pageSize,Integer areaId,Integer streetId){
-        PageInfo<ZufangEx> pageInfo = zufangService.getZufangList(pageNum,pageSize,areaId,streetId);
+    public Result getZufangList(@RequestParam Integer pageNum,@RequestParam Integer pageSize,Integer areaId,Integer streetId,Integer rental,String orderBy){
+        PageInfo<ZufangEx> pageInfo = zufangService.getZufangList(pageNum,pageSize,areaId,streetId,rental,orderBy);
         if(pageInfo != null ){
             return new Result(pageInfo,"获取租房列表成功",100);
         }

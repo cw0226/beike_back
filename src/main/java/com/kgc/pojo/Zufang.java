@@ -33,6 +33,8 @@ public class Zufang {
 
     private String feature;
 
+    private Date createTime;
+
     public Integer getId() {
         return id;
     }
@@ -151,5 +153,13 @@ public class Zufang {
 
     public void setFeature(String feature) {
         this.feature = feature == null ? null : feature.trim();
+    }
+
+    public Date getCreateTime() {
+        return createTime;
+    }
+
+    public void setCreateTime(Date createTime) {
+        this.createTime = createTime;
     }
 }
