@@ -6,5 +6,5 @@ import com.kgc.pojo.ZufangEx;
 import java.util.List;
 
 public interface ZufangService {
-    PageInfo<ZufangEx> getZufangList(Integer pageNum,Integer pageSize);
+    PageInfo<ZufangEx> getZufangList(Integer pageNum,Integer pageSize,Integer areaId,Integer streetId);
 }

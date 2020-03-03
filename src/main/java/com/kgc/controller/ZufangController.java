@@ -20,13 +20,15 @@ public class ZufangController {
     @Resource
     private ZufangService zufangService;
 
+
+
     /**
      * 获取租房列表
      * @return
      */
     @GetMapping("getZufangList")
-    public Result getZufangList(@RequestParam Integer pageNum,@RequestParam Integer pageSize){
-        PageInfo<ZufangEx> pageInfo = zufangService.getZufangList(pageNum,pageSize);
+    public Result getZufangList(@RequestParam Integer pageNum,@RequestParam Integer pageSize,Integer areaId,Integer streetId){
+        PageInfo<ZufangEx> pageInfo = zufangService.getZufangList(pageNum,pageSize,areaId,streetId);
         if(pageInfo != null ){
             return new Result(pageInfo,"获取租房列表成功",100);
         }

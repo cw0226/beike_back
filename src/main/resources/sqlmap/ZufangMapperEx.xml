@@ -27,5 +27,15 @@
             beike_zufang AS zufang
             INNER JOIN beike_szstreet AS street ON zufang.street_id = street.id
             INNER JOIN beike_szarea AS area ON street.area_id = area.id
+
+            <where>
+                <if test="areaId != null and areaId != ''">
+                    and street.area_id = #{areaId}
+                </if>
+                <if test="streetId != null and streetId != ''">
+                    and zufang.street_id = #{streetId}
+                </if>
+            </where>
+
     </select>
 </mapper>
