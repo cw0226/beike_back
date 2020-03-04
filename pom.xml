@@ -19,6 +19,12 @@
     </properties>
 
     <dependencies>
+        <!--ftp上传文件组件-->
+        <dependency>
+            <groupId>commons-net</groupId>
+            <artifactId>commons-net</artifactId>
+            <version>3.6</version>
+        </dependency>
         <!--Redis服务器-->
         <dependency>
             <groupId>org.springframework.boot</groupId>
