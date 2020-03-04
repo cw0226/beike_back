@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.kgc.dao.ZufangMapperEx">
+    <resultMap id="BaseResultMap" type="com.kgc.pojo.ZufangEx" >
+        <id column="id" property="id" jdbcType="INTEGER" />
+        <result column="rental" property="rental" jdbcType="INTEGER" />
+        <result column="village" property="village" jdbcType="VARCHAR" />
+        <result column="square" property="square" jdbcType="INTEGER" />
+        <result column="orientations" property="orientations" jdbcType="VARCHAR" />
+        <result column="room" property="room" jdbcType="INTEGER" />
+        <result column="hall" property="hall" jdbcType="INTEGER" />
+        <result column="toilet" property="toilet" jdbcType="INTEGER" />
+        <result column="rent" property="rent" jdbcType="INTEGER" />
+        <result column="terrace" property="terrace" jdbcType="VARCHAR" />
+        <result column="servicing_time" property="servicingTime" jdbcType="TIMESTAMP" />
+        <result column="hostPic" property="hostpic" jdbcType="VARCHAR" />
+        <result column="feature" property="feature"/>
+        <result column="area" property="area"/>
+        <result column="street" property="street"/>
+    </resultMap>
+    <select id="selectZufang" resultMap="BaseResultMap">
+       SELECT
+            zufang.*,
+            street.street,
+            area.area
+        FROM
+            beike_zufang AS zufang
+            INNER JOIN beike_szstreet AS street ON zufang.street_id = street.id
+            INNER JOIN beike_szarea AS area ON street.area_id = area.id
+
+            <where>
+                <if test="areaId != null and areaId != ''">
+                    and street.area_id = #{areaId}
+                </if>
+                <if test="streetId != null and streetId != ''">
+                    and zufang.street_id = #{streetId}
+                </if>
+                <if test="rental != null and rental != ''">
+                    and zufang.rental = #{rental}
+                </if>
+            </where>
+                <if test=" orderBy != null and orderBy != ''">
+                    ORDER BY ${orderBy} DESC
+                </if>
+    </select>
+</mapper>
