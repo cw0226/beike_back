@@ -2,6 +2,7 @@ package com.kgc.controller;
 
 import com.kgc.pojo.User;
 import com.kgc.service.UserService;
+import com.kgc.utils.FtpUtil;
 import com.kgc.utils.Md5Encrypt;
 import com.kgc.utils.Result;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -76,9 +77,12 @@ public class UserController extends BaseController{
     @PostMapping("/updUserData")
     public Result updUserData(User user,@RequestParam(value = "userpic",required = false)MultipartFile multipartFile) throws IOException {
         if(multipartFile != null && !multipartFile.isEmpty()){
-            String fileName = uploadFile(multipartFile);
-            //文件名上传到数据库
-            user.setUserPic(fileName);
+            //上传文件到ftp服务器
+            String fileName = FtpUtil.uploadFile(multipartFile);
+            if(fileName != null){
+                //文件名上传到数据库
+                user.setUserPic(fileName);
+            }
         }
         if(user.getUserPassword() != null){
             //md5加密
