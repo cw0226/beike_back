@@ -8,4 +8,10 @@ public interface AgentService {
     Agent getAgentById(Integer id);
 
     List<Agent> getAgentList();
+
+    int addAgent(Agent agent);
+
+    int updateAgent(Agent agent);
+
+    int deleteAgentById(Integer id);
 }
