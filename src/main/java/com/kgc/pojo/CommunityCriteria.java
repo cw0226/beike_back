@@ -262,63 +262,63 @@ public class CommunityCriteria {
             return (Criteria) this;
         }
 
-        public Criteria andCityIsNull() {
-            addCriterion("city is null");
+        public Criteria andCityIdIsNull() {
+            addCriterion("city_id is null");
             return (Criteria) this;
         }
 
-        public Criteria andCityIsNotNull() {
-            addCriterion("city is not null");
+        public Criteria andCityIdIsNotNull() {
+            addCriterion("city_id is not null");
             return (Criteria) this;
         }
 
-        public Criteria andCityEqualTo(Integer value) {
-            addCriterion("city =", value, "city");
+        public Criteria andCityIdEqualTo(Integer value) {
+            addCriterion("city_id =", value, "cityId");
             return (Criteria) this;
         }
 
-        public Criteria andCityNotEqualTo(Integer value) {
-            addCriterion("city <>", value, "city");
+        public Criteria andCityIdNotEqualTo(Integer value) {
+            addCriterion("city_id <>", value, "cityId");
             return (Criteria) this;
         }
 
-        public Criteria andCityGreaterThan(Integer value) {
-            addCriterion("city >", value, "city");
+        public Criteria andCityIdGreaterThan(Integer value) {
+            addCriterion("city_id >", value, "cityId");
             return (Criteria) this;
         }
 
-        public Criteria andCityGreaterThanOrEqualTo(Integer value) {
-            addCriterion("city >=", value, "city");
+        public Criteria andCityIdGreaterThanOrEqualTo(Integer value) {
+            addCriterion("city_id >=", value, "cityId");
             return (Criteria) this;
         }
 
-        public Criteria andCityLessThan(Integer value) {
-            addCriterion("city <", value, "city");
+        public Criteria andCityIdLessThan(Integer value) {
+            addCriterion("city_id <", value, "cityId");
             return (Criteria) this;
         }
 
-        public Criteria andCityLessThanOrEqualTo(Integer value) {
-            addCriterion("city <=", value, "city");
+        public Criteria andCityIdLessThanOrEqualTo(Integer value) {
+            addCriterion("city_id <=", value, "cityId");
             return (Criteria) this;
         }
 
-        public Criteria andCityIn(List<Integer> values) {
-            addCriterion("city in", values, "city");
+        public Criteria andCityIdIn(List<Integer> values) {
+            addCriterion("city_id in", values, "cityId");
             return (Criteria) this;
         }
 
-        public Criteria andCityNotIn(List<Integer> values) {
-            addCriterion("city not in", values, "city");
+        public Criteria andCityIdNotIn(List<Integer> values) {
+            addCriterion("city_id not in", values, "cityId");
             return (Criteria) this;
         }
 
-        public Criteria andCityBetween(Integer value1, Integer value2) {
-            addCriterion("city between", value1, value2, "city");
+        public Criteria andCityIdBetween(Integer value1, Integer value2) {
+            addCriterion("city_id between", value1, value2, "cityId");
             return (Criteria) this;
         }
 
-        public Criteria andCityNotBetween(Integer value1, Integer value2) {
-            addCriterion("city not between", value1, value2, "city");
+        public Criteria andCityIdNotBetween(Integer value1, Integer value2) {
+            addCriterion("city_id not between", value1, value2, "cityId");
             return (Criteria) this;
         }
 
@@ -512,73 +512,63 @@ public class CommunityCriteria {
             return (Criteria) this;
         }
 
-        public Criteria andDeveloperIsNull() {
-            addCriterion("developer is null");
+        public Criteria andManagementFeeIsNull() {
+            addCriterion("management_fee is null");
             return (Criteria) this;
         }
 
-        public Criteria andDeveloperIsNotNull() {
-            addCriterion("developer is not null");
+        public Criteria andManagementFeeIsNotNull() {
+            addCriterion("management_fee is not null");
             return (Criteria) this;
         }
 
-        public Criteria andDeveloperEqualTo(String value) {
-            addCriterion("developer =", value, "developer");
+        public Criteria andManagementFeeEqualTo(Double value) {
+            addCriterion("management_fee =", value, "managementFee");
             return (Criteria) this;
         }
 
-        public Criteria andDeveloperNotEqualTo(String value) {
-            addCriterion("developer <>", value, "developer");
+        public Criteria andManagementFeeNotEqualTo(Double value) {
+            addCriterion("management_fee <>", value, "managementFee");
             return (Criteria) this;
         }
 
-        public Criteria andDeveloperGreaterThan(String value) {
-            addCriterion("developer >", value, "developer");
+        public Criteria andManagementFeeGreaterThan(Double value) {
+            addCriterion("management_fee >", value, "managementFee");
             return (Criteria) this;
         }
 
-        public Criteria andDeveloperGreaterThanOrEqualTo(String value) {
-            addCriterion("developer >=", value, "developer");
+        public Criteria andManagementFeeGreaterThanOrEqualTo(Double value) {
+            addCriterion("management_fee >=", value, "managementFee");
             return (Criteria) this;
         }
 
-        public Criteria andDeveloperLessThan(String value) {
-            addCriterion("developer <", value, "developer");
+        public Criteria andManagementFeeLessThan(Double value) {
+            addCriterion("management_fee <", value, "managementFee");
             return (Criteria) this;
         }
 
-        public Criteria andDeveloperLessThanOrEqualTo(String value) {
-            addCriterion("developer <=", value, "developer");
+        public Criteria andManagementFeeLessThanOrEqualTo(Double value) {
+            addCriterion("management_fee <=", value, "managementFee");
             return (Criteria) this;
         }
 
-        public Criteria andDeveloperLike(String value) {
-            addCriterion("developer like", value, "developer");
+        public Criteria andManagementFeeIn(List<Double> values) {
+            addCriterion("management_fee in", values, "managementFee");
             return (Criteria) this;
         }
 
-        public Criteria andDeveloperNotLike(String value) {
-            addCriterion("developer not like", value, "developer");
+        public Criteria andManagementFeeNotIn(List<Double> values) {
+            addCriterion("management_fee not in", values, "managementFee");
             return (Criteria) this;
         }
 
-        public Criteria andDeveloperIn(List<String> values) {
-            addCriterion("developer in", values, "developer");
+        public Criteria andManagementFeeBetween(Double value1, Double value2) {
+            addCriterion("management_fee between", value1, value2, "managementFee");
             return (Criteria) this;
         }
 
-        public Criteria andDeveloperNotIn(List<String> values) {
-            addCriterion("developer not in", values, "developer");
-            return (Criteria) this;
-        }
-
-        public Criteria andDeveloperBetween(String value1, String value2) {
-            addCriterion("developer between", value1, value2, "developer");
-            return (Criteria) this;
-        }
-
-        public Criteria andDeveloperNotBetween(String value1, String value2) {
-            addCriterion("developer not between", value1, value2, "developer");
+        public Criteria andManagementFeeNotBetween(Double value1, Double value2) {
+            addCriterion("management_fee not between", value1, value2, "managementFee");
             return (Criteria) this;
         }
 
@@ -652,63 +642,73 @@ public class CommunityCriteria {
             return (Criteria) this;
         }
 
-        public Criteria andManagementFeeIsNull() {
-            addCriterion("management_fee is null");
+        public Criteria andDeveloperIsNull() {
+            addCriterion("developer is null");
             return (Criteria) this;
         }
 
-        public Criteria andManagementFeeIsNotNull() {
-            addCriterion("management_fee is not null");
+        public Criteria andDeveloperIsNotNull() {
+            addCriterion("developer is not null");
             return (Criteria) this;
         }
 
-        public Criteria andManagementFeeEqualTo(Double value) {
-            addCriterion("management_fee =", value, "managementFee");
+        public Criteria andDeveloperEqualTo(String value) {
+            addCriterion("developer =", value, "developer");
             return (Criteria) this;
         }
 
-        public Criteria andManagementFeeNotEqualTo(Double value) {
-            addCriterion("management_fee <>", value, "managementFee");
+        public Criteria andDeveloperNotEqualTo(String value) {
+            addCriterion("developer <>", value, "developer");
             return (Criteria) this;
         }
 
-        public Criteria andManagementFeeGreaterThan(Double value) {
-            addCriterion("management_fee >", value, "managementFee");
+        public Criteria andDeveloperGreaterThan(String value) {
+            addCriterion("developer >", value, "developer");
             return (Criteria) this;
         }
 
-        public Criteria andManagementFeeGreaterThanOrEqualTo(Double value) {
-            addCriterion("management_fee >=", value, "managementFee");
+        public Criteria andDeveloperGreaterThanOrEqualTo(String value) {
+            addCriterion("developer >=", value, "developer");
             return (Criteria) this;
         }
 
-        public Criteria andManagementFeeLessThan(Double value) {
-            addCriterion("management_fee <", value, "managementFee");
+        public Criteria andDeveloperLessThan(String value) {
+            addCriterion("developer <", value, "developer");
             return (Criteria) this;
         }
 
-        public Criteria andManagementFeeLessThanOrEqualTo(Double value) {
-            addCriterion("management_fee <=", value, "managementFee");
+        public Criteria andDeveloperLessThanOrEqualTo(String value) {
+            addCriterion("developer <=", value, "developer");
             return (Criteria) this;
         }
 
-        public Criteria andManagementFeeIn(List<Double> values) {
-            addCriterion("management_fee in", values, "managementFee");
+        public Criteria andDeveloperLike(String value) {
+            addCriterion("developer like", value, "developer");
             return (Criteria) this;
         }
 
-        public Criteria andManagementFeeNotIn(List<Double> values) {
-            addCriterion("management_fee not in", values, "managementFee");
+        public Criteria andDeveloperNotLike(String value) {
+            addCriterion("developer not like", value, "developer");
             return (Criteria) this;
         }
 
-        public Criteria andManagementFeeBetween(Double value1, Double value2) {
-            addCriterion("management_fee between", value1, value2, "managementFee");
+        public Criteria andDeveloperIn(List<String> values) {
+            addCriterion("developer in", values, "developer");
             return (Criteria) this;
         }
 
-        public Criteria andManagementFeeNotBetween(Double value1, Double value2) {
-            addCriterion("management_fee not between", value1, value2, "managementFee");
+        public Criteria andDeveloperNotIn(List<String> values) {
+            addCriterion("developer not in", values, "developer");
+            return (Criteria) this;
+        }
+
+        public Criteria andDeveloperBetween(String value1, String value2) {
+            addCriterion("developer between", value1, value2, "developer");
+            return (Criteria) this;
+        }
+
+        public Criteria andDeveloperNotBetween(String value1, String value2) {
+            addCriterion("developer not between", value1, value2, "developer");
             return (Criteria) this;
         }
 

@@ -4,13 +4,13 @@
   <resultMap id="BaseResultMap" type="com.kgc.pojo.Community" >
     <id column="id" property="id" jdbcType="INTEGER" />
     <result column="community_name" property="communityName" jdbcType="VARCHAR" />
-    <result column="city" property="city" jdbcType="INTEGER" />
+    <result column="city_id" property="cityId" jdbcType="INTEGER" />
     <result column="price" property="price" jdbcType="BIGINT" />
     <result column="creation_date" property="creationDate" jdbcType="DATE" />
     <result column="building_type" property="buildingType" jdbcType="VARCHAR" />
-    <result column="developer" property="developer" jdbcType="VARCHAR" />
-    <result column="management_company" property="managementCompany" jdbcType="VARCHAR" />
     <result column="management_fee" property="managementFee" jdbcType="DOUBLE" />
+    <result column="management_company" property="managementCompany" jdbcType="VARCHAR" />
+    <result column="developer" property="developer" jdbcType="VARCHAR" />
     <result column="contact_agent" property="contactAgent" jdbcType="INTEGER" />
     <result column="buildings" property="buildings" jdbcType="INTEGER" />
     <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
@@ -75,8 +75,8 @@
     </where>
   </sql>
   <sql id="Base_Column_List" >
-    id, community_name, city, price, creation_date, building_type, developer, management_company, 
-    management_fee, contact_agent, buildings, create_time, modify_time
+    id, community_name, city_id, price, creation_date, building_type, management_fee, 
+    management_company, developer, contact_agent, buildings, create_time, modify_time
   </sql>
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.kgc.pojo.CommunityCriteria" >
     select
@@ -109,14 +109,14 @@
     </if>
   </delete>
   <insert id="insert" parameterType="com.kgc.pojo.Community" >
-    insert into beike_community (id, community_name, city, 
+    insert into beike_community (id, community_name, city_id, 
       price, creation_date, building_type, 
-      developer, management_company, management_fee, 
+      management_fee, management_company, developer, 
       contact_agent, buildings, create_time, 
       modify_time)
-    values (#{id,jdbcType=INTEGER}, #{communityName,jdbcType=VARCHAR}, #{city,jdbcType=INTEGER}, 
+    values (#{id,jdbcType=INTEGER}, #{communityName,jdbcType=VARCHAR}, #{cityId,jdbcType=INTEGER}, 
       #{price,jdbcType=BIGINT}, #{creationDate,jdbcType=DATE}, #{buildingType,jdbcType=VARCHAR}, 
-      #{developer,jdbcType=VARCHAR}, #{managementCompany,jdbcType=VARCHAR}, #{managementFee,jdbcType=DOUBLE}, 
+      #{managementFee,jdbcType=DOUBLE}, #{managementCompany,jdbcType=VARCHAR}, #{developer,jdbcType=VARCHAR}, 
       #{contactAgent,jdbcType=INTEGER}, #{buildings,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP}, 
       #{modifyTime,jdbcType=TIMESTAMP})
   </insert>
@@ -129,8 +129,8 @@
       <if test="communityName != null" >
         community_name,
       </if>
-      <if test="city != null" >
-        city,
+      <if test="cityId != null" >
+        city_id,
       </if>
       <if test="price != null" >
         price,
@@ -141,14 +141,14 @@
       <if test="buildingType != null" >
         building_type,
       </if>
-      <if test="developer != null" >
-        developer,
+      <if test="managementFee != null" >
+        management_fee,
       </if>
       <if test="managementCompany != null" >
         management_company,
       </if>
-      <if test="managementFee != null" >
-        management_fee,
+      <if test="developer != null" >
+        developer,
       </if>
       <if test="contactAgent != null" >
         contact_agent,
@@ -170,8 +170,8 @@
       <if test="communityName != null" >
         #{communityName,jdbcType=VARCHAR},
       </if>
-      <if test="city != null" >
-        #{city,jdbcType=INTEGER},
+      <if test="cityId != null" >
+        #{cityId,jdbcType=INTEGER},
       </if>
       <if test="price != null" >
         #{price,jdbcType=BIGINT},
@@ -182,14 +182,14 @@
       <if test="buildingType != null" >
         #{buildingType,jdbcType=VARCHAR},
       </if>
-      <if test="developer != null" >
-        #{developer,jdbcType=VARCHAR},
+      <if test="managementFee != null" >
+        #{managementFee,jdbcType=DOUBLE},
       </if>
       <if test="managementCompany != null" >
         #{managementCompany,jdbcType=VARCHAR},
       </if>
-      <if test="managementFee != null" >
-        #{managementFee,jdbcType=DOUBLE},
+      <if test="developer != null" >
+        #{developer,jdbcType=VARCHAR},
       </if>
       <if test="contactAgent != null" >
         #{contactAgent,jdbcType=INTEGER},
@@ -220,8 +220,8 @@
       <if test="record.communityName != null" >
         community_name = #{record.communityName,jdbcType=VARCHAR},
       </if>
-      <if test="record.city != null" >
-        city = #{record.city,jdbcType=INTEGER},
+      <if test="record.cityId != null" >
+        city_id = #{record.cityId,jdbcType=INTEGER},
       </if>
       <if test="record.price != null" >
         price = #{record.price,jdbcType=BIGINT},
@@ -232,14 +232,14 @@
       <if test="record.buildingType != null" >
         building_type = #{record.buildingType,jdbcType=VARCHAR},
       </if>
-      <if test="record.developer != null" >
-        developer = #{record.developer,jdbcType=VARCHAR},
+      <if test="record.managementFee != null" >
+        management_fee = #{record.managementFee,jdbcType=DOUBLE},
       </if>
       <if test="record.managementCompany != null" >
         management_company = #{record.managementCompany,jdbcType=VARCHAR},
       </if>
-      <if test="record.managementFee != null" >
-        management_fee = #{record.managementFee,jdbcType=DOUBLE},
+      <if test="record.developer != null" >
+        developer = #{record.developer,jdbcType=VARCHAR},
       </if>
       <if test="record.contactAgent != null" >
         contact_agent = #{record.contactAgent,jdbcType=INTEGER},
@@ -262,13 +262,13 @@
     update beike_community
     set id = #{record.id,jdbcType=INTEGER},
       community_name = #{record.communityName,jdbcType=VARCHAR},
-      city = #{record.city,jdbcType=INTEGER},
+      city_id = #{record.cityId,jdbcType=INTEGER},
       price = #{record.price,jdbcType=BIGINT},
       creation_date = #{record.creationDate,jdbcType=DATE},
       building_type = #{record.buildingType,jdbcType=VARCHAR},
-      developer = #{record.developer,jdbcType=VARCHAR},
-      management_company = #{record.managementCompany,jdbcType=VARCHAR},
       management_fee = #{record.managementFee,jdbcType=DOUBLE},
+      management_company = #{record.managementCompany,jdbcType=VARCHAR},
+      developer = #{record.developer,jdbcType=VARCHAR},
       contact_agent = #{record.contactAgent,jdbcType=INTEGER},
       buildings = #{record.buildings,jdbcType=INTEGER},
       create_time = #{record.createTime,jdbcType=TIMESTAMP},
@@ -283,8 +283,8 @@
       <if test="communityName != null" >
         community_name = #{communityName,jdbcType=VARCHAR},
       </if>
-      <if test="city != null" >
-        city = #{city,jdbcType=INTEGER},
+      <if test="cityId != null" >
+        city_id = #{cityId,jdbcType=INTEGER},
       </if>
       <if test="price != null" >
         price = #{price,jdbcType=BIGINT},
@@ -295,14 +295,14 @@
       <if test="buildingType != null" >
         building_type = #{buildingType,jdbcType=VARCHAR},
       </if>
-      <if test="developer != null" >
-        developer = #{developer,jdbcType=VARCHAR},
+      <if test="managementFee != null" >
+        management_fee = #{managementFee,jdbcType=DOUBLE},
       </if>
       <if test="managementCompany != null" >
         management_company = #{managementCompany,jdbcType=VARCHAR},
       </if>
-      <if test="managementFee != null" >
-        management_fee = #{managementFee,jdbcType=DOUBLE},
+      <if test="developer != null" >
+        developer = #{developer,jdbcType=VARCHAR},
       </if>
       <if test="contactAgent != null" >
         contact_agent = #{contactAgent,jdbcType=INTEGER},
@@ -322,13 +322,13 @@
   <update id="updateByPrimaryKey" parameterType="com.kgc.pojo.Community" >
     update beike_community
     set community_name = #{communityName,jdbcType=VARCHAR},
-      city = #{city,jdbcType=INTEGER},
+      city_id = #{cityId,jdbcType=INTEGER},
       price = #{price,jdbcType=BIGINT},
       creation_date = #{creationDate,jdbcType=DATE},
       building_type = #{buildingType,jdbcType=VARCHAR},
-      developer = #{developer,jdbcType=VARCHAR},
-      management_company = #{managementCompany,jdbcType=VARCHAR},
       management_fee = #{managementFee,jdbcType=DOUBLE},
+      management_company = #{managementCompany,jdbcType=VARCHAR},
+      developer = #{developer,jdbcType=VARCHAR},
       contact_agent = #{contactAgent,jdbcType=INTEGER},
       buildings = #{buildings,jdbcType=INTEGER},
       create_time = #{createTime,jdbcType=TIMESTAMP},

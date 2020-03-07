@@ -4,7 +4,7 @@
   <resultMap id="BaseResultMap" type="com.kgc.pojo.Community" >
     <id column="id" property="id" jdbcType="INTEGER" />
     <result column="community_name" property="communityName" jdbcType="VARCHAR" />
-    <result column="city" property="city" jdbcType="INTEGER" />
+    <result column="city_id" property="cityId" jdbcType="INTEGER" />
     <result column="price" property="price" jdbcType="BIGINT" />
     <result column="creation_date" property="creationDate" jdbcType="DATE" />
     <result column="building_type" property="buildingType" jdbcType="VARCHAR" />
@@ -17,7 +17,7 @@
     <result column="modify_time" property="modifyTime" jdbcType="TIMESTAMP" />
   </resultMap>
   <insert id="insertCommunity" useGeneratedKeys="true" keyColumn="id" keyProperty="id" parameterType="com.kgc.pojo.Community" >
-    insert into beike_community (community_name)
-    values (#{communityName,jdbcType=VARCHAR})
+    insert into beike_community (community_name,city_id)
+    values (#{communityName,jdbcType=VARCHAR},#{cityId,jdbcType=INTEGER})
   </insert>
 </mapper>

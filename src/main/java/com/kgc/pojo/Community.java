@@ -7,7 +7,7 @@ public class Community {
 
     private String communityName;
 
-    private Integer city;
+    private Integer cityId;
 
     private Long price;
 
@@ -15,11 +15,11 @@ public class Community {
 
     private String buildingType;
 
-    private String developer;
+    private Double managementFee;
 
     private String managementCompany;
 
-    private Double managementFee;
+    private String developer;
 
     private Integer contactAgent;
 
@@ -45,12 +45,12 @@ public class Community {
         this.communityName = communityName == null ? null : communityName.trim();
     }
 
-    public Integer getCity() {
-        return city;
+    public Integer getCityId() {
+        return cityId;
     }
 
-    public void setCity(Integer city) {
-        this.city = city;
+    public void setCityId(Integer cityId) {
+        this.cityId = cityId;
     }
 
     public Long getPrice() {
@@ -77,12 +77,12 @@ public class Community {
         this.buildingType = buildingType == null ? null : buildingType.trim();
     }
 
-    public String getDeveloper() {
-        return developer;
+    public Double getManagementFee() {
+        return managementFee;
     }
 
-    public void setDeveloper(String developer) {
-        this.developer = developer == null ? null : developer.trim();
+    public void setManagementFee(Double managementFee) {
+        this.managementFee = managementFee;
     }
 
     public String getManagementCompany() {
@@ -93,12 +93,12 @@ public class Community {
         this.managementCompany = managementCompany == null ? null : managementCompany.trim();
     }
 
-    public Double getManagementFee() {
-        return managementFee;
+    public String getDeveloper() {
+        return developer;
     }
 
-    public void setManagementFee(Double managementFee) {
-        this.managementFee = managementFee;
+    public void setDeveloper(String developer) {
+        this.developer = developer == null ? null : developer.trim();
     }
 
     public Integer getContactAgent() {
