@@ -5,7 +5,7 @@ import com.kgc.pojo.HousingEx;
 import java.util.List;
 
 public interface HousingMapperEx {
-    List<HousingEx> getHousingExList(HousingEx housingEx);
+    List<HousingEx> getHousingExListByCreateUserId(Integer createUserId);
 
     HousingEx getHousingExById(Integer id);
 }

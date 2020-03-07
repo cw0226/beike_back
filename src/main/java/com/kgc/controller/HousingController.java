@@ -5,11 +5,9 @@ package com.kgc.controller;
 
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
-import com.kgc.pojo.Building;
 import com.kgc.pojo.Community;
 import com.kgc.pojo.Housing;
 import com.kgc.pojo.HousingEx;
-import com.kgc.service.BuildingService;
 import com.kgc.service.CommunityService;
 import com.kgc.service.HousingService;
 import com.kgc.utils.Result;
@@ -27,8 +25,6 @@ public class HousingController {
     @Resource
     private HousingService housingService;
     @Resource
-    private BuildingService buildingService;
-    @Resource
     private CommunityService communityService;
 
     /**
@@ -39,12 +35,9 @@ public class HousingController {
      * @return
      */
     @PostMapping("view/addOrUpdateHousing")
-    public Result addOrUpdateHousing(Housing housing, Building building, Community community){
+    public Result addOrUpdateHousing(Housing housing, Community community){
         int communityId = communityService.addCommunity(community);
         housing.setCommunityId(communityId);
-        building.setCommunityBuilding(communityId);
-        int buildingId = buildingService.addBuilding(building);
-        housing.setBuildingsId(buildingId);
         int count = 0;
         if (housing.getId() != null) {
             housing.setCheckTime(new Date());  //修改时间
@@ -78,10 +71,10 @@ public class HousingController {
      * 获取所有房源
      * @return
      */
-    @GetMapping("view/getHousingList")
-    public Result getHousingList(@RequestParam Integer page,@RequestParam Integer limit, HousingEx housingEx){
+    @GetMapping("view/getHousingListByCreateUserId")
+    public Result getHousingListByCreateUserId(@RequestParam Integer page,@RequestParam Integer limit, Integer createUserId){
         PageHelper.startPage(page, limit);
-        List<HousingEx> housingExList = housingService.getHousingExList(housingEx);
+        List<HousingEx> housingExList = housingService.getHousingListByCreateUserId(createUserId);
         PageInfo<HousingEx> pageInfo = new PageInfo<HousingEx>(housingExList);
         return new Result(pageInfo, "请求成功", 100);
     }

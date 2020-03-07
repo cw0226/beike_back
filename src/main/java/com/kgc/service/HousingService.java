@@ -8,8 +8,6 @@ import java.util.List;
 public interface HousingService {
     int addHousing(Housing housing);
 
-    List<HousingEx> getHousingExList(HousingEx housingEx);
-
     Housing getHousingById(Integer id);
 
     HousingEx getHousingExById(Integer id);
@@ -17,4 +15,6 @@ public interface HousingService {
     int deleteHousingById(Integer id);
 
     int updateHousingById(Housing housing);
+
+    List<HousingEx> getHousingListByCreateUserId(Integer createUserId);
 }

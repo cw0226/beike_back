@@ -1,72 +1,44 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.kgc.dao.HousingMapperEx" >
-  <resultMap id="BaseResultMap" type="com.kgc.pojo.HousingEx" >
-    <id column="id" property="id" jdbcType="INTEGER" />
-    <result column="city_id" property="cityId" jdbcType="INTEGER" />
-    <result column="community_id" property="communityId" jdbcType="INTEGER" />
-    <result column="buildings_id" property="buildingsId" jdbcType="INTEGER" />
-    <result column="expect_rent" property="expectRent" jdbcType="DECIMAL" />
-    <result column="rent_type" property="rentType" jdbcType="TINYINT" />
-    <result column="name" property="name" jdbcType="VARCHAR" />
-    <result column="phone" property="phone" jdbcType="VARCHAR" />
-    <result column="check_state" property="checkState" jdbcType="TINYINT" />
-    <result column="remark" property="remark" jdbcType="VARCHAR" />
-    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
-    <result column="create_user_id" property="createUserId" jdbcType="INTEGER" />
-    <result column="check_time" property="checkTime" jdbcType="TIMESTAMP" />
-    <result column="check_user_id" property="checkUserId" jdbcType="INTEGER" />
-    <result column="house_type_id" property="houseTypeId" jdbcType="INTEGER" />
-    <result column="area" property="area" jdbcType="INTEGER" />
-    <result column="orientation" property="orientation" jdbcType="VARCHAR" />
-    <result column="check_in" property="checkIn" jdbcType="VARCHAR" />
-    <result column="floor" property="floor" jdbcType="VARCHAR" />
-    <result column="elevator" property="elevator" jdbcType="TINYINT" />
-    <result column="stall" property="stall" jdbcType="VARCHAR" />
-    <result column="water_type" property="waterType" jdbcType="TINYINT" />
-    <result column="electricity_type" property="electricityType" jdbcType="TINYINT" />
-    <result column="fuel_gas" property="fuelGas" jdbcType="TINYINT" />
-    <result column="heating_type" property="heatingType" jdbcType="VARCHAR" />
-    <result column="tenancy_term" property="tenancyTerm" jdbcType="VARCHAR" />
-    <result column="see_apartment" property="seeApartment" jdbcType="VARCHAR" />
-    <result column="television" property="television" jdbcType="TINYINT" />
-    <result column="refrigerator" property="refrigerator" jdbcType="TINYINT" />
-    <result column="washing_machine" property="washingMachine" jdbcType="TINYINT" />
-    <result column="air_conditioner" property="airConditioner" jdbcType="TINYINT" />
-    <result column="calorifier" property="calorifier" jdbcType="TINYINT" />
-    <result column="bed" property="bed" jdbcType="TINYINT" />
-    <result column="heating" property="heating" jdbcType="TINYINT" />
-    <result column="pay_method" property="payMethod" jdbcType="VARCHAR" />
-    <result column="deposit" property="deposit" jdbcType="VARCHAR" />
-    <result column="service_charge" property="serviceCharge" jdbcType="VARCHAR" />
-    <result column="agency_fee" property="agencyFee" jdbcType="VARCHAR" />
-    <result column="maintain_time" property="maintainTime" jdbcType="TIMESTAMP" />
-    <result column="maintain_agent_id" property="maintainAgentId" jdbcType="INTEGER" />
-    <result column="community_name" property="communityName" jdbcType="VARCHAR" />
-    <result column="block" property="block" jdbcType="VARCHAR" />
-    <result column="uint" property="uint" jdbcType="VARCHAR" />
-    <result column="room_number" property="roomNumber" jdbcType="VARCHAR" />
-    <result column="city" property="city" jdbcType="VARCHAR" />
-  </resultMap>
-  <select id="getHousingExList" resultMap="BaseResultMap" parameterType="HousingEx">
-    SELECT bh.id,city_id,community_id,buildings_id,expect_rent,rent_type,name,phone,check_state,remark,
-        bh.create_time,create_user_id,check_time,check_user_id,community_name,block,uint,room_number
-    FROM beike_housing AS bh
-    INNER JOIN beike_building AS bb ON bh.buildings_id = bb.id
-	INNER JOIN beike_community AS bc ON bh.community_id = bc.id
-	<where>
-      <if test="createUserId != null">
-        and create_user_id = #{createUserId}
-      </if>
-    </where>
-  </select>
+<mapper namespace="com.kgc.dao.HousingMapperEx">
+    <resultMap id="BaseResultMap" type="com.kgc.pojo.HousingEx">
+        <id column="id" property="id" jdbcType="INTEGER"/>
+        <result column="community_id" property="communityId" jdbcType="INTEGER"/>
+        <result column="block" property="block" jdbcType="VARCHAR"/>
+        <result column="uint" property="uint" jdbcType="VARCHAR"/>
+        <result column="room_number" property="roomNumber" jdbcType="VARCHAR"/>
+        <result column="expect_rent" property="expectRent" jdbcType="DECIMAL"/>
+        <result column="rent_type" property="rentType" jdbcType="TINYINT"/>
+        <result column="name" property="name" jdbcType="VARCHAR"/>
+        <result column="phone" property="phone" jdbcType="VARCHAR"/>
+        <result column="check_state" property="checkState" jdbcType="TINYINT"/>
+        <result column="remark" property="remark" jdbcType="VARCHAR"/>
+        <result column="create_time" property="createTime" jdbcType="TIMESTAMP"/>
+        <result column="create_user_id" property="createUserId" jdbcType="INTEGER"/>
+        <result column="check_time" property="checkTime" jdbcType="TIMESTAMP"/>
+        <result column="check_user_id" property="checkUserId" jdbcType="INTEGER"/>
+        <result column="community_name" property="communityName" jdbcType="VARCHAR"/>
+        <result column="city_name" property="cityName" jdbcType="VARCHAR"/>
+    </resultMap>
+    <select id="getHousingExListByCreateUserId" resultMap="BaseResultMap" parameterType="Integer">
+    SELECT bh.id, community_id, block, uint, room_number, expect_rent, rent_type, bh.NAME, phone, check_state,
+	    remark, bh.create_time, create_user_id, check_time, check_user_id, community_name, bci.NAME AS city_name
+    FROM
+	    beike_housing AS bh
+	    LEFT JOIN beike_community AS bc ON bh.community_id = bc.id
+	    LEFT JOIN beike_city AS bci ON bc.city_id = bci.id
+    WHERE
+	    create_user_id = #{createUserId}
+    </select>
 
-  <select id="getHousingExById" resultMap="BaseResultMap" parameterType="HousingEx">
-    SELECT bh.id,city_id,community_id,buildings_id,expect_rent,rent_type,name,phone,check_state,remark,
-        bh.create_time,create_user_id,check_time,check_user_id,community_name,block,uint,room_number
-    FROM beike_housing AS bh
-    INNER JOIN beike_building AS bb ON bh.buildings_id = bb.id
-    INNER JOIN beike_community AS bc ON bh.community_id = bc.id
-    where bh.id = #{id}
+    <select id="getHousingExById" resultMap="BaseResultMap" parameterType="Integer">
+    SELECT bh.id, community_id, block, uint, room_number, expect_rent, rent_type, bh.NAME, phone, check_state,
+	    remark, bh.create_time, create_user_id, check_time, check_user_id, community_name, bci.NAME AS city_name
+    FROM
+	    beike_housing AS bh
+	    LEFT JOIN beike_community AS bc ON bh.community_id = bc.id
+	    LEFT JOIN beike_city AS bci ON bc.city_id = bci.id
+    WHERE
+	    bh.id = #{id}
   </select>
 </mapper>

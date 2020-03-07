@@ -5,10 +5,7 @@ package com.kgc.pojo;
  */
 public class HousingEx extends Housing {
     private String communityName;   // 小区名
-    private String block;   // 楼栋号
-    private String uint;    // 单元号
-    private String roomNumber;  // 门牌号
-    private String city;    // 城市
+    private String cityName;    // 城市名
 
     public String getCommunityName() {
         return communityName;
@@ -18,35 +15,11 @@ public class HousingEx extends Housing {
         this.communityName = communityName;
     }
 
-    public String getBlock() {
-        return block;
+    public String getCityName() {
+        return cityName;
     }
 
-    public void setBlock(String block) {
-        this.block = block;
-    }
-
-    public String getUint() {
-        return uint;
-    }
-
-    public void setUint(String uint) {
-        this.uint = uint;
-    }
-
-    public String getRoomNumber() {
-        return roomNumber;
-    }
-
-    public void setRoomNumber(String roomNumber) {
-        this.roomNumber = roomNumber;
-    }
-
-    public String getCity() {
-        return city;
-    }
-
-    public void setCity(String city) {
-        this.city = city;
+    public void setCityName(String cityName) {
+        this.cityName = cityName;
     }
 }
