@@ -1,15 +1,14 @@
 package com.kgc.service.impl;
 
-import com.alibaba.druid.util.StringUtils;
+import com.github.pagehelper.Page;
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import com.kgc.dao.UserMapper;
-import com.kgc.dao.UserMapperEx;
 import com.kgc.pojo.User;
 import com.kgc.pojo.UserCriteria;
 import com.kgc.service.UserService;
-import com.kgc.utils.Result;
 import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.Cacheable;
-import org.springframework.cache.annotation.Caching;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -19,8 +18,6 @@ import java.util.List;
 public class UserServiceImpl implements UserService {
     @Resource
     private UserMapper userMapper;
-    @Resource
-    private UserMapperEx userMapperEx;
 
     @Cacheable(value = "user",key = "'getUserOfLogin'+#userName+','+#password")
     @Override
@@ -44,10 +41,15 @@ public class UserServiceImpl implements UserService {
         return userMapper.insertSelective(user);
     }
 
-    @Cacheable(value = "user",key = "'selectUserByName'+#name")
     @Override
     public User selectUserByName(String name) {
-        return userMapperEx.selectUserByName(name);
+        UserCriteria userCriteria = new UserCriteria();
+        userCriteria.createCriteria().andUserNameEqualTo(name);
+        List<User> userList = userMapper.selectByExample(userCriteria);
+        if (userList != null && userList.size() >0){
+            return userList.get(0);
+        }
+        return null;
     }
 
     @CacheEvict(value = "user",allEntries = true)
@@ -62,9 +64,26 @@ public class UserServiceImpl implements UserService {
         return userMapper.selectByPrimaryKey(id);
     }
 
-    @Cacheable(value = "user",key = "'selectUSerByPhone'+#phone")
     @Override
     public User selectUSerByPhone(String phone) {
-        return userMapperEx.selectUserByPhone(phone);
+        UserCriteria userCriteria = new UserCriteria();
+        userCriteria.createCriteria().andUserPhoneEqualTo(phone);
+
+        List<User> userList = userMapper.selectByExample(userCriteria);
+        if (userList != null && userList.size() >0){
+            return userList.get(0);
+        }
+        return null;
+    }
+
+    @Cacheable(value = "user",key = "'getAllUserInfo'+#pageNum+','+#pageSize")
+    @Override
+    public PageInfo<User> getAllUserInfo(Integer pageNum,Integer pageSize) {
+        PageHelper.startPage(pageNum,pageSize);
+        List<User> userList = userMapper.selectByExample(null);
+        if(userList != null && userList.size() >0){
+            return new PageInfo(userList);
+        }
+        return null;
     }
 }

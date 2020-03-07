@@ -22,6 +22,9 @@ public class ZufangServiceImpl implements ZufangService {
         //分页插件
         PageHelper.startPage(pageNum,pageSize);
         List<ZufangEx> zufangExList = zufangMapperEx.selectZufang(areaId,streetId,rental,orderBy);
-        return new PageInfo(zufangExList);
+        if(zufangExList != null && zufangExList.size() >0){
+            return new PageInfo(zufangExList);
+        }
+        return null;
     }
 }
