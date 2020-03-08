@@ -15,6 +15,7 @@
     <result column="rent" property="rent" jdbcType="INTEGER" />
     <result column="terrace" property="terrace" jdbcType="VARCHAR" />
     <result column="servicing_time" property="servicingTime" jdbcType="TIMESTAMP" />
+    <result column="agent_id" property="agentId" jdbcType="INTEGER" />
     <result column="hostPic" property="hostpic" jdbcType="VARCHAR" />
     <result column="feature" property="feature" jdbcType="VARCHAR" />
     <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
@@ -79,7 +80,7 @@
   </sql>
   <sql id="Base_Column_List" >
     id, title, rental, street_id, village, square, orientations, room, hall, toilet, 
-    rent, terrace, servicing_time, hostPic, feature, create_time
+    rent, terrace, servicing_time, agent_id, hostPic, feature, create_time
   </sql>
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.kgc.pojo.ZufangCriteria" >
     select
@@ -116,14 +117,14 @@
       street_id, village, square, 
       orientations, room, hall, 
       toilet, rent, terrace, 
-      servicing_time, hostPic, feature, 
-      create_time)
+      servicing_time, agent_id, hostPic, 
+      feature, create_time)
     values (#{id,jdbcType=INTEGER}, #{title,jdbcType=VARCHAR}, #{rental,jdbcType=INTEGER}, 
       #{streetId,jdbcType=INTEGER}, #{village,jdbcType=VARCHAR}, #{square,jdbcType=INTEGER}, 
       #{orientations,jdbcType=VARCHAR}, #{room,jdbcType=INTEGER}, #{hall,jdbcType=INTEGER}, 
       #{toilet,jdbcType=INTEGER}, #{rent,jdbcType=INTEGER}, #{terrace,jdbcType=VARCHAR}, 
-      #{servicingTime,jdbcType=TIMESTAMP}, #{hostpic,jdbcType=VARCHAR}, #{feature,jdbcType=VARCHAR}, 
-      #{createTime,jdbcType=TIMESTAMP})
+      #{servicingTime,jdbcType=TIMESTAMP}, #{agentId,jdbcType=INTEGER}, #{hostpic,jdbcType=VARCHAR}, 
+      #{feature,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP})
   </insert>
   <insert id="insertSelective" parameterType="com.kgc.pojo.Zufang" >
     insert into beike_zufang
@@ -166,6 +167,9 @@
       </if>
       <if test="servicingTime != null" >
         servicing_time,
+      </if>
+      <if test="agentId != null" >
+        agent_id,
       </if>
       <if test="hostpic != null" >
         hostPic,
@@ -216,6 +220,9 @@
       </if>
       <if test="servicingTime != null" >
         #{servicingTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="agentId != null" >
+        #{agentId,jdbcType=INTEGER},
       </if>
       <if test="hostpic != null" >
         #{hostpic,jdbcType=VARCHAR},
@@ -276,6 +283,9 @@
       <if test="record.servicingTime != null" >
         servicing_time = #{record.servicingTime,jdbcType=TIMESTAMP},
       </if>
+      <if test="record.agentId != null" >
+        agent_id = #{record.agentId,jdbcType=INTEGER},
+      </if>
       <if test="record.hostpic != null" >
         hostPic = #{record.hostpic,jdbcType=VARCHAR},
       </if>
@@ -305,6 +315,7 @@
       rent = #{record.rent,jdbcType=INTEGER},
       terrace = #{record.terrace,jdbcType=VARCHAR},
       servicing_time = #{record.servicingTime,jdbcType=TIMESTAMP},
+      agent_id = #{record.agentId,jdbcType=INTEGER},
       hostPic = #{record.hostpic,jdbcType=VARCHAR},
       feature = #{record.feature,jdbcType=VARCHAR},
       create_time = #{record.createTime,jdbcType=TIMESTAMP}
@@ -351,6 +362,9 @@
       <if test="servicingTime != null" >
         servicing_time = #{servicingTime,jdbcType=TIMESTAMP},
       </if>
+      <if test="agentId != null" >
+        agent_id = #{agentId,jdbcType=INTEGER},
+      </if>
       <if test="hostpic != null" >
         hostPic = #{hostpic,jdbcType=VARCHAR},
       </if>
@@ -377,6 +391,7 @@
       rent = #{rent,jdbcType=INTEGER},
       terrace = #{terrace,jdbcType=VARCHAR},
       servicing_time = #{servicingTime,jdbcType=TIMESTAMP},
+      agent_id = #{agentId,jdbcType=INTEGER},
       hostPic = #{hostpic,jdbcType=VARCHAR},
       feature = #{feature,jdbcType=VARCHAR},
       create_time = #{createTime,jdbcType=TIMESTAMP}

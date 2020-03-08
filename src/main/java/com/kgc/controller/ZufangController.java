@@ -2,6 +2,7 @@ package com.kgc.controller;
 
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
+import com.kgc.pojo.Zufang;
 import com.kgc.pojo.ZufangEx;
 import com.kgc.service.ZufangService;
 import com.kgc.utils.Result;
@@ -33,5 +34,11 @@ public class ZufangController {
             return new Result(pageInfo,"获取租房列表成功",100);
         }
         return new Result(null,"获取租房列表失败",104);
+    }
+
+    @GetMapping("getHouseInfoById")
+    public Result getHouseInfoById(@RequestParam Integer id){
+        Zufang zufang = zufangService.getHouseInfoById(id);
+        return new Result(zufang,"请求处理成功",100);
     }
 }

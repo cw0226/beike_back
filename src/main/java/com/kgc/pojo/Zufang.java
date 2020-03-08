@@ -1,5 +1,7 @@
 package com.kgc.pojo;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import java.util.Date;
 
 public class Zufang {
@@ -27,12 +29,16 @@ public class Zufang {
 
     private String terrace;
 
+    @JsonFormat(pattern = "yyyy-MM-dd")
     private Date servicingTime;
+
+    private Integer agentId;
 
     private String hostpic;
 
     private String feature;
 
+    @JsonFormat(pattern = "yyyy-MM-dd hh:mm:ss")
     private Date createTime;
 
     public Integer getId() {
@@ -137,6 +143,14 @@ public class Zufang {
 
     public void setServicingTime(Date servicingTime) {
         this.servicingTime = servicingTime;
+    }
+
+    public Integer getAgentId() {
+        return agentId;
+    }
+
+    public void setAgentId(Integer agentId) {
+        this.agentId = agentId;
     }
 
     public String getHostpic() {

@@ -1,6 +1,7 @@
 package com.kgc.service;
 
 import com.github.pagehelper.PageInfo;
+import com.kgc.pojo.Zufang;
 import com.kgc.pojo.ZufangEx;
 
 import java.util.List;
@@ -17,4 +18,6 @@ public interface ZufangService {
      * @return
      */
     PageInfo<ZufangEx> getZufangList(Integer pageNum,Integer pageSize,Integer areaId,Integer streetId,Integer rental,String orderBy);
+
+    Zufang getHouseInfoById(Integer id);
 }
