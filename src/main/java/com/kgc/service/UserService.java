@@ -1,7 +1,10 @@
 package com.kgc.service;
 
+import com.github.pagehelper.PageInfo;
 import com.kgc.pojo.User;
 import com.kgc.utils.Result;
+
+import java.util.List;
 
 public interface UserService {
     /**
@@ -45,4 +48,10 @@ public interface UserService {
      * @return
      */
     User selectUSerByPhone(String phone);
+
+    /**
+     * 获取所有用户信息
+     * @return
+     */
+    PageInfo<User> getAllUserInfo(Integer pageNum, Integer pageSize);
 }

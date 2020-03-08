@@ -1,5 +1,6 @@
 package com.kgc.controller;
 
+import com.github.pagehelper.PageInfo;
 import com.kgc.pojo.User;
 import com.kgc.service.UserService;
 import com.kgc.utils.FtpUtil;
@@ -10,7 +11,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
-import sun.security.provider.MD5;
 
 import javax.annotation.Resource;
 import java.io.IOException;
@@ -20,6 +20,18 @@ public class UserController extends BaseController{
     @Resource
     private UserService userService;
 
+    /**
+     * 获取所有用户信息
+     * @return
+     */
+    @GetMapping("getAllUserInfo")
+    public Result getAllUserInfo(@RequestParam Integer pageNum,@RequestParam Integer pageSize){
+        PageInfo<User> pageInfo = userService.getAllUserInfo(pageNum,pageSize);
+        if(pageInfo != null){
+            return new Result(pageInfo,"获取用户列表成功",100);
+        }
+        return new Result(null,"获取用户列表失败",104);
+    }
 
     /**
      * 查询手机号是否存在
