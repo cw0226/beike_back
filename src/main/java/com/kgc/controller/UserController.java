@@ -22,11 +22,12 @@ public class UserController extends BaseController{
 
     /**
      * 获取所有用户信息
+     * 传入id除了id本身
      * @return
      */
-    @GetMapping("getAllUserInfo")
-    public Result getAllUserInfo(@RequestParam Integer pageNum,@RequestParam Integer pageSize){
-        PageInfo<User> pageInfo = userService.getAllUserInfo(pageNum,pageSize);
+    @GetMapping("/view/getAllUserInfo")
+    public Result getAllUserInfo(@RequestParam Integer pageNum,@RequestParam Integer pageSize,Integer id){
+        PageInfo<User> pageInfo = userService.getAllUserInfo(pageNum,pageSize,id);
         if(pageInfo != null){
             return new Result(pageInfo,"获取用户列表成功",100);
         }

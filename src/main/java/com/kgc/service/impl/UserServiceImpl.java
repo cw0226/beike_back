@@ -76,11 +76,18 @@ public class UserServiceImpl implements UserService {
         return null;
     }
 
-    @Cacheable(value = "user",key = "'getAllUserInfo'+#pageNum+','+#pageSize")
+    @Cacheable(value = "user",key = "'getAllUserInfo'+#pageNum+','+#pageSize+','+#id")
     @Override
-    public PageInfo<User> getAllUserInfo(Integer pageNum,Integer pageSize) {
+    public PageInfo<User> getAllUserInfo(Integer pageNum,Integer pageSize,Integer id) {
+        UserCriteria userCriteria = null;
+        if(id != null){
+            userCriteria = new UserCriteria();
+            userCriteria.createCriteria().andIdNotEqualTo(id);
+        }
+
+
         PageHelper.startPage(pageNum,pageSize);
-        List<User> userList = userMapper.selectByExample(null);
+        List<User> userList = userMapper.selectByExample(userCriteria==null?null:userCriteria);
         if(userList != null && userList.size() >0){
             return new PageInfo(userList);
         }

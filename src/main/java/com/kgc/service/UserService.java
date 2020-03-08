@@ -53,5 +53,5 @@ public interface UserService {
      * 获取所有用户信息
      * @return
      */
-    PageInfo<User> getAllUserInfo(Integer pageNum, Integer pageSize);
+    PageInfo<User> getAllUserInfo(Integer pageNum, Integer pageSize,Integer id);
 }
