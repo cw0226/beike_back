@@ -20,7 +20,7 @@ public class AlipayController {
     @Resource
     private OrderService orderService;
 
-    @PostMapping("/view/orderpay")
+    @PostMapping("orderpay")
     public  void pay(HttpServletResponse response, HttpServletRequest request, Integer id) throws IOException, AlipayApiException {
         //设置编码
         response.setContentType("text/html;charset=utf-8");
@@ -35,6 +35,7 @@ public class AlipayController {
 
         //房租订单号，
         String order_number = orderService.getCostByID(1).getOrdercode();
+        System.out.println(order_number);
         //付款金额，从前台获取，必填
         String  total_amount =orderService.getCostByID(1).getRent();
         System.out.println(total_amount);
