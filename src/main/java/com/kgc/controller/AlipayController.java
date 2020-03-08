@@ -4,8 +4,8 @@ import com.alipay.api.AlipayApiException;
 import com.alipay.api.AlipayClient;
 import com.alipay.api.DefaultAlipayClient;
 import com.alipay.api.request.AlipayTradePagePayRequest;
-import com.kawa.service.PayService;
-import com.kawa.utils.AlipayConfig;
+import com.kgc.service.OrderService;
+import com.kgc.utils.AlipayConfig;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -18,7 +18,7 @@ import java.io.PrintWriter;
 @RestController
 public class AlipayController {
     @Resource
-    private PayService payService;
+    private OrderService orderService;
 
     @PostMapping("/view/orderpay")
     public  void pay(HttpServletResponse response, HttpServletRequest request, Integer id) throws IOException, AlipayApiException {
@@ -33,10 +33,10 @@ public class AlipayController {
         aliPayRequest.setReturnUrl(AlipayConfig.return_url);
         aliPayRequest.setNotifyUrl(AlipayConfig.notify_url);
 
-        //商户订单号，后台可以写一个工具类生成一个订单号，必填
-        String order_number = new String("1111111");
+        //房租订单号，
+        String order_number = orderService.getCostByID(1).getOrdercode();
         //付款金额，从前台获取，必填
-        int  total_amount = payService.getCostByID(1).getUsercost();
+        String  total_amount =orderService.getCostByID(1).getRent();
         System.out.println(total_amount);
         //订单名称，必填
         String subject = new String("代号007");
