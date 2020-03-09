@@ -34,13 +34,13 @@ public class AlipayController {
         aliPayRequest.setNotifyUrl(AlipayConfig.notify_url);
 
         //房租订单号，
-        String order_number = orderService.getCostByID(1).getOrdercode();
+        String order_number = orderService.getCostByID(2).getOrdercode();
         System.out.println(order_number);
         //付款金额，
-        String  total_amount =orderService.getCostByID(1).getRent();
+        String  total_amount =orderService.getCostByID(2).getRent();
         System.out.println(total_amount);
         //订单名称，必填
-        String subject = new String("代号007");
+        String subject = new String("代号009");
         aliPayRequest.setBizContent("{\"out_trade_no\":\"" + order_number + "\","
                 + "\"total_amount\":\"" + total_amount + "\","
                 + "\"subject\":\"" + subject + "\","
