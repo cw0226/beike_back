@@ -30,10 +30,7 @@ public class ZufangController {
     @GetMapping("getZufangList")
     public Result getZufangList(@RequestParam Integer pageNum,@RequestParam Integer pageSize,Integer areaId,Integer streetId,Integer rental,String orderBy){
         PageInfo<ZufangEx> pageInfo = zufangService.getZufangList(pageNum,pageSize,areaId,streetId,rental,orderBy);
-        if(pageInfo != null ){
-            return new Result(pageInfo,"获取租房列表成功",100);
-        }
-        return new Result(null,"获取租房列表失败",104);
+        return new Result(pageInfo,"获取租房列表成功",100);
     }
 
     @GetMapping("getHouseInfoById")
