@@ -2,6 +2,7 @@ package com.kgc.pojo;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 
+import java.math.BigDecimal;
 import java.util.Date;
 
 public class Zufang {
@@ -15,22 +16,13 @@ public class Zufang {
 
     private String village;
 
-    private Integer square;
-
-    private String orientations;
-
     private Integer room;
 
     private Integer hall;
 
     private Integer toilet;
 
-    private Integer rent;
-
     private String terrace;
-
-    @JsonFormat(pattern = "yyyy-MM-dd")
-    private Date servicingTime;
 
     private Integer agentId;
 
@@ -40,6 +32,71 @@ public class Zufang {
 
     @JsonFormat(pattern = "yyyy-MM-dd hh:mm:ss")
     private Date createTime;
+
+    private Integer houseingId;
+
+    private String houseCheckCode;
+
+    private Integer square;
+
+    private String orientations;
+
+    @JsonFormat(pattern = "yyyy-MM-dd")
+    private Date servicingTime;
+
+    private Byte floor;
+
+    private Byte elevator;
+
+    private Byte carport;
+
+    private Byte water;
+
+    private Byte electricity;
+
+    private Byte fuelGas;
+
+    private String heating;
+
+    private Integer rent;
+
+    private Integer cashPledge;
+
+    private Integer serviceCharge;
+
+    private Integer agencyFee;
+
+    private BigDecimal longitude;
+
+    private BigDecimal latitude;
+
+    private String tenancyTerm;
+
+    private String seeHouse;
+
+    private Byte television;
+
+    private Byte refrigerator;
+
+    private Byte washingMachine;
+
+    private Byte airConditioner;
+
+    private Byte calorifier;
+
+    private Byte bed;
+
+    private Byte heatGas;
+
+    private Byte broadBand;
+
+    private Byte closet;
+
+    private Byte naturalGas;
+
+    private String payWay;
+
+    private String checkIn;
 
     public Integer getId() {
         return id;
@@ -81,22 +138,6 @@ public class Zufang {
         this.village = village == null ? null : village.trim();
     }
 
-    public Integer getSquare() {
-        return square;
-    }
-
-    public void setSquare(Integer square) {
-        this.square = square;
-    }
-
-    public String getOrientations() {
-        return orientations;
-    }
-
-    public void setOrientations(String orientations) {
-        this.orientations = orientations == null ? null : orientations.trim();
-    }
-
     public Integer getRoom() {
         return room;
     }
@@ -121,28 +162,12 @@ public class Zufang {
         this.toilet = toilet;
     }
 
-    public Integer getRent() {
-        return rent;
-    }
-
-    public void setRent(Integer rent) {
-        this.rent = rent;
-    }
-
     public String getTerrace() {
         return terrace;
     }
 
     public void setTerrace(String terrace) {
         this.terrace = terrace == null ? null : terrace.trim();
-    }
-
-    public Date getServicingTime() {
-        return servicingTime;
-    }
-
-    public void setServicingTime(Date servicingTime) {
-        this.servicingTime = servicingTime;
     }
 
     public Integer getAgentId() {
@@ -175,5 +200,261 @@ public class Zufang {
 
     public void setCreateTime(Date createTime) {
         this.createTime = createTime;
+    }
+
+    public Integer getHouseingId() {
+        return houseingId;
+    }
+
+    public void setHouseingId(Integer houseingId) {
+        this.houseingId = houseingId;
+    }
+
+    public String getHouseCheckCode() {
+        return houseCheckCode;
+    }
+
+    public void setHouseCheckCode(String houseCheckCode) {
+        this.houseCheckCode = houseCheckCode == null ? null : houseCheckCode.trim();
+    }
+
+    public Integer getSquare() {
+        return square;
+    }
+
+    public void setSquare(Integer square) {
+        this.square = square;
+    }
+
+    public String getOrientations() {
+        return orientations;
+    }
+
+    public void setOrientations(String orientations) {
+        this.orientations = orientations == null ? null : orientations.trim();
+    }
+
+    public Date getServicingTime() {
+        return servicingTime;
+    }
+
+    public void setServicingTime(Date servicingTime) {
+        this.servicingTime = servicingTime;
+    }
+
+    public Byte getFloor() {
+        return floor;
+    }
+
+    public void setFloor(Byte floor) {
+        this.floor = floor;
+    }
+
+    public Byte getElevator() {
+        return elevator;
+    }
+
+    public void setElevator(Byte elevator) {
+        this.elevator = elevator;
+    }
+
+    public Byte getCarport() {
+        return carport;
+    }
+
+    public void setCarport(Byte carport) {
+        this.carport = carport;
+    }
+
+    public Byte getWater() {
+        return water;
+    }
+
+    public void setWater(Byte water) {
+        this.water = water;
+    }
+
+    public Byte getElectricity() {
+        return electricity;
+    }
+
+    public void setElectricity(Byte electricity) {
+        this.electricity = electricity;
+    }
+
+    public Byte getFuelGas() {
+        return fuelGas;
+    }
+
+    public void setFuelGas(Byte fuelGas) {
+        this.fuelGas = fuelGas;
+    }
+
+    public String getHeating() {
+        return heating;
+    }
+
+    public void setHeating(String heating) {
+        this.heating = heating == null ? null : heating.trim();
+    }
+
+    public Integer getRent() {
+        return rent;
+    }
+
+    public void setRent(Integer rent) {
+        this.rent = rent;
+    }
+
+    public Integer getCashPledge() {
+        return cashPledge;
+    }
+
+    public void setCashPledge(Integer cashPledge) {
+        this.cashPledge = cashPledge;
+    }
+
+    public Integer getServiceCharge() {
+        return serviceCharge;
+    }
+
+    public void setServiceCharge(Integer serviceCharge) {
+        this.serviceCharge = serviceCharge;
+    }
+
+    public Integer getAgencyFee() {
+        return agencyFee;
+    }
+
+    public void setAgencyFee(Integer agencyFee) {
+        this.agencyFee = agencyFee;
+    }
+
+    public BigDecimal getLongitude() {
+        return longitude;
+    }
+
+    public void setLongitude(BigDecimal longitude) {
+        this.longitude = longitude;
+    }
+
+    public BigDecimal getLatitude() {
+        return latitude;
+    }
+
+    public void setLatitude(BigDecimal latitude) {
+        this.latitude = latitude;
+    }
+
+    public String getTenancyTerm() {
+        return tenancyTerm;
+    }
+
+    public void setTenancyTerm(String tenancyTerm) {
+        this.tenancyTerm = tenancyTerm == null ? null : tenancyTerm.trim();
+    }
+
+    public String getSeeHouse() {
+        return seeHouse;
+    }
+
+    public void setSeeHouse(String seeHouse) {
+        this.seeHouse = seeHouse == null ? null : seeHouse.trim();
+    }
+
+    public Byte getTelevision() {
+        return television;
+    }
+
+    public void setTelevision(Byte television) {
+        this.television = television;
+    }
+
+    public Byte getRefrigerator() {
+        return refrigerator;
+    }
+
+    public void setRefrigerator(Byte refrigerator) {
+        this.refrigerator = refrigerator;
+    }
+
+    public Byte getWashingMachine() {
+        return washingMachine;
+    }
+
+    public void setWashingMachine(Byte washingMachine) {
+        this.washingMachine = washingMachine;
+    }
+
+    public Byte getAirConditioner() {
+        return airConditioner;
+    }
+
+    public void setAirConditioner(Byte airConditioner) {
+        this.airConditioner = airConditioner;
+    }
+
+    public Byte getCalorifier() {
+        return calorifier;
+    }
+
+    public void setCalorifier(Byte calorifier) {
+        this.calorifier = calorifier;
+    }
+
+    public Byte getBed() {
+        return bed;
+    }
+
+    public void setBed(Byte bed) {
+        this.bed = bed;
+    }
+
+    public Byte getHeatGas() {
+        return heatGas;
+    }
+
+    public void setHeatGas(Byte heatGas) {
+        this.heatGas = heatGas;
+    }
+
+    public Byte getBroadBand() {
+        return broadBand;
+    }
+
+    public void setBroadBand(Byte broadBand) {
+        this.broadBand = broadBand;
+    }
+
+    public Byte getCloset() {
+        return closet;
+    }
+
+    public void setCloset(Byte closet) {
+        this.closet = closet;
+    }
+
+    public Byte getNaturalGas() {
+        return naturalGas;
+    }
+
+    public void setNaturalGas(Byte naturalGas) {
+        this.naturalGas = naturalGas;
+    }
+
+    public String getPayWay() {
+        return payWay;
+    }
+
+    public void setPayWay(String payWay) {
+        this.payWay = payWay == null ? null : payWay.trim();
+    }
+
+    public String getCheckIn() {
+        return checkIn;
+    }
+
+    public void setCheckIn(String checkIn) {
+        this.checkIn = checkIn == null ? null : checkIn.trim();
     }
 }
