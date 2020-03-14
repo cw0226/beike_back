@@ -24,9 +24,25 @@ public class Zufang {
 
     private String terrace;
 
+    private Byte rentStatus;
+
+    private Integer housingId;
+
     private Integer agentId;
 
+    private String houseDescribe;
+
     private String hostpic;
+
+    private String picFirst;
+
+    private String picSecond;
+
+    private String picThird;
+
+    private String picFourth;
+
+    private String planPic;
 
     private String feature;
 
@@ -44,6 +60,8 @@ public class Zufang {
     @JsonFormat(pattern = "yyyy-MM-dd")
     private Date servicingTime;
 
+    private String checkIn;
+
     private Byte floor;
 
     private Byte elevator;
@@ -57,18 +75,6 @@ public class Zufang {
     private Byte fuelGas;
 
     private String heating;
-
-    private Integer rent;
-
-    private Integer cashPledge;
-
-    private Integer serviceCharge;
-
-    private Integer agencyFee;
-
-    private BigDecimal longitude;
-
-    private BigDecimal latitude;
 
     private String tenancyTerm;
 
@@ -96,7 +102,17 @@ public class Zufang {
 
     private String payWay;
 
-    private String checkIn;
+    private Integer rent;
+
+    private Integer cashPledge;
+
+    private Integer serviceCharge;
+
+    private Integer agencyFee;
+
+    private BigDecimal longitude;
+
+    private BigDecimal latitude;
 
     public Integer getId() {
         return id;
@@ -170,6 +186,22 @@ public class Zufang {
         this.terrace = terrace == null ? null : terrace.trim();
     }
 
+    public Byte getRentStatus() {
+        return rentStatus;
+    }
+
+    public void setRentStatus(Byte rentStatus) {
+        this.rentStatus = rentStatus;
+    }
+
+    public Integer getHousingId() {
+        return housingId;
+    }
+
+    public void setHousingId(Integer housingId) {
+        this.housingId = housingId;
+    }
+
     public Integer getAgentId() {
         return agentId;
     }
@@ -178,12 +210,60 @@ public class Zufang {
         this.agentId = agentId;
     }
 
+    public String getHouseDescribe() {
+        return houseDescribe;
+    }
+
+    public void setHouseDescribe(String houseDescribe) {
+        this.houseDescribe = houseDescribe == null ? null : houseDescribe.trim();
+    }
+
     public String getHostpic() {
         return hostpic;
     }
 
     public void setHostpic(String hostpic) {
         this.hostpic = hostpic == null ? null : hostpic.trim();
+    }
+
+    public String getPicFirst() {
+        return picFirst;
+    }
+
+    public void setPicFirst(String picFirst) {
+        this.picFirst = picFirst == null ? null : picFirst.trim();
+    }
+
+    public String getPicSecond() {
+        return picSecond;
+    }
+
+    public void setPicSecond(String picSecond) {
+        this.picSecond = picSecond == null ? null : picSecond.trim();
+    }
+
+    public String getPicThird() {
+        return picThird;
+    }
+
+    public void setPicThird(String picThird) {
+        this.picThird = picThird == null ? null : picThird.trim();
+    }
+
+    public String getPicFourth() {
+        return picFourth;
+    }
+
+    public void setPicFourth(String picFourth) {
+        this.picFourth = picFourth == null ? null : picFourth.trim();
+    }
+
+    public String getPlanPic() {
+        return planPic;
+    }
+
+    public void setPlanPic(String planPic) {
+        this.planPic = planPic == null ? null : planPic.trim();
     }
 
     public String getFeature() {
@@ -242,6 +322,14 @@ public class Zufang {
         this.servicingTime = servicingTime;
     }
 
+    public String getCheckIn() {
+        return checkIn;
+    }
+
+    public void setCheckIn(String checkIn) {
+        this.checkIn = checkIn == null ? null : checkIn.trim();
+    }
+
     public Byte getFloor() {
         return floor;
     }
@@ -296,54 +384,6 @@ public class Zufang {
 
     public void setHeating(String heating) {
         this.heating = heating == null ? null : heating.trim();
-    }
-
-    public Integer getRent() {
-        return rent;
-    }
-
-    public void setRent(Integer rent) {
-        this.rent = rent;
-    }
-
-    public Integer getCashPledge() {
-        return cashPledge;
-    }
-
-    public void setCashPledge(Integer cashPledge) {
-        this.cashPledge = cashPledge;
-    }
-
-    public Integer getServiceCharge() {
-        return serviceCharge;
-    }
-
-    public void setServiceCharge(Integer serviceCharge) {
-        this.serviceCharge = serviceCharge;
-    }
-
-    public Integer getAgencyFee() {
-        return agencyFee;
-    }
-
-    public void setAgencyFee(Integer agencyFee) {
-        this.agencyFee = agencyFee;
-    }
-
-    public BigDecimal getLongitude() {
-        return longitude;
-    }
-
-    public void setLongitude(BigDecimal longitude) {
-        this.longitude = longitude;
-    }
-
-    public BigDecimal getLatitude() {
-        return latitude;
-    }
-
-    public void setLatitude(BigDecimal latitude) {
-        this.latitude = latitude;
     }
 
     public String getTenancyTerm() {
@@ -450,11 +490,51 @@ public class Zufang {
         this.payWay = payWay == null ? null : payWay.trim();
     }
 
-    public String getCheckIn() {
-        return checkIn;
+    public Integer getRent() {
+        return rent;
     }
 
-    public void setCheckIn(String checkIn) {
-        this.checkIn = checkIn == null ? null : checkIn.trim();
+    public void setRent(Integer rent) {
+        this.rent = rent;
+    }
+
+    public Integer getCashPledge() {
+        return cashPledge;
+    }
+
+    public void setCashPledge(Integer cashPledge) {
+        this.cashPledge = cashPledge;
+    }
+
+    public Integer getServiceCharge() {
+        return serviceCharge;
+    }
+
+    public void setServiceCharge(Integer serviceCharge) {
+        this.serviceCharge = serviceCharge;
+    }
+
+    public Integer getAgencyFee() {
+        return agencyFee;
+    }
+
+    public void setAgencyFee(Integer agencyFee) {
+        this.agencyFee = agencyFee;
+    }
+
+    public BigDecimal getLongitude() {
+        return longitude;
+    }
+
+    public void setLongitude(BigDecimal longitude) {
+        this.longitude = longitude;
+    }
+
+    public BigDecimal getLatitude() {
+        return latitude;
+    }
+
+    public void setLatitude(BigDecimal latitude) {
+        this.latitude = latitude;
     }
 }

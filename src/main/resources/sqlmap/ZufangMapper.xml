@@ -11,8 +11,16 @@
     <result column="hall" property="hall" jdbcType="INTEGER" />
     <result column="toilet" property="toilet" jdbcType="INTEGER" />
     <result column="terrace" property="terrace" jdbcType="VARCHAR" />
+    <result column="rent_status" property="rentStatus" jdbcType="TINYINT" />
+    <result column="housing_id" property="housingId" jdbcType="INTEGER" />
     <result column="agent_id" property="agentId" jdbcType="INTEGER" />
+    <result column="house_describe" property="houseDescribe" jdbcType="VARCHAR" />
     <result column="hostPic" property="hostpic" jdbcType="VARCHAR" />
+    <result column="pic_first" property="picFirst" jdbcType="VARCHAR" />
+    <result column="pic_second" property="picSecond" jdbcType="VARCHAR" />
+    <result column="pic_third" property="picThird" jdbcType="VARCHAR" />
+    <result column="pic_fourth" property="picFourth" jdbcType="VARCHAR" />
+    <result column="plan_pic" property="planPic" jdbcType="VARCHAR" />
     <result column="feature" property="feature" jdbcType="VARCHAR" />
     <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
     <result column="houseing_id" property="houseingId" jdbcType="INTEGER" />
@@ -20,6 +28,7 @@
     <result column="square" property="square" jdbcType="INTEGER" />
     <result column="orientations" property="orientations" jdbcType="VARCHAR" />
     <result column="servicing_time" property="servicingTime" jdbcType="TIMESTAMP" />
+    <result column="check_in" property="checkIn" jdbcType="VARCHAR" />
     <result column="floor" property="floor" jdbcType="TINYINT" />
     <result column="elevator" property="elevator" jdbcType="TINYINT" />
     <result column="carport" property="carport" jdbcType="TINYINT" />
@@ -27,12 +36,6 @@
     <result column="electricity" property="electricity" jdbcType="TINYINT" />
     <result column="fuel_gas" property="fuelGas" jdbcType="TINYINT" />
     <result column="heating" property="heating" jdbcType="VARCHAR" />
-    <result column="rent" property="rent" jdbcType="INTEGER" />
-    <result column="cash_pledge" property="cashPledge" jdbcType="INTEGER" />
-    <result column="service_charge" property="serviceCharge" jdbcType="INTEGER" />
-    <result column="agency_fee" property="agencyFee" jdbcType="INTEGER" />
-    <result column="longitude" property="longitude" jdbcType="DECIMAL" />
-    <result column="latitude" property="latitude" jdbcType="DECIMAL" />
     <result column="tenancy_term" property="tenancyTerm" jdbcType="VARCHAR" />
     <result column="see_house" property="seeHouse" jdbcType="VARCHAR" />
     <result column="television" property="television" jdbcType="TINYINT" />
@@ -46,7 +49,12 @@
     <result column="closet" property="closet" jdbcType="TINYINT" />
     <result column="natural_gas" property="naturalGas" jdbcType="TINYINT" />
     <result column="pay_way" property="payWay" jdbcType="VARCHAR" />
-    <result column="check_in" property="checkIn" jdbcType="VARCHAR" />
+    <result column="rent" property="rent" jdbcType="INTEGER" />
+    <result column="cash_pledge" property="cashPledge" jdbcType="INTEGER" />
+    <result column="service_charge" property="serviceCharge" jdbcType="INTEGER" />
+    <result column="agency_fee" property="agencyFee" jdbcType="INTEGER" />
+    <result column="longitude" property="longitude" jdbcType="DECIMAL" />
+    <result column="latitude" property="latitude" jdbcType="DECIMAL" />
   </resultMap>
   <sql id="Example_Where_Clause" >
     <where >
@@ -107,12 +115,13 @@
     </where>
   </sql>
   <sql id="Base_Column_List" >
-    id, title, rental, street_id, village, room, hall, toilet, terrace, agent_id, hostPic, 
-    feature, create_time, houseing_id, house_check_code, square, orientations, servicing_time, 
-    floor, elevator, carport, water, electricity, fuel_gas, heating, rent, cash_pledge, 
-    service_charge, agency_fee, longitude, latitude, tenancy_term, see_house, television, 
-    refrigerator, washing_machine, air_conditioner, calorifier, bed, heat_gas, broad_band, 
-    closet, natural_gas, pay_way, check_in
+    id, title, rental, street_id, village, room, hall, toilet, terrace, rent_status, 
+    housing_id, agent_id, house_describe, hostPic, pic_first, pic_second, pic_third, 
+    pic_fourth, plan_pic, feature, create_time, houseing_id, house_check_code, square, 
+    orientations, servicing_time, check_in, floor, elevator, carport, water, electricity, 
+    fuel_gas, heating, tenancy_term, see_house, television, refrigerator, washing_machine, 
+    air_conditioner, calorifier, bed, heat_gas, broad_band, closet, natural_gas, pay_way, 
+    rent, cash_pledge, service_charge, agency_fee, longitude, latitude
   </sql>
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.kgc.pojo.ZufangCriteria" >
     select
@@ -148,35 +157,39 @@
     insert into beike_zufang (id, title, rental, 
       street_id, village, room, 
       hall, toilet, terrace, 
-      agent_id, hostPic, feature, 
-      create_time, houseing_id, house_check_code, 
-      square, orientations, servicing_time, 
+      rent_status, housing_id, agent_id, 
+      house_describe, hostPic, pic_first, 
+      pic_second, pic_third, pic_fourth, 
+      plan_pic, feature, create_time, 
+      houseing_id, house_check_code, square, 
+      orientations, servicing_time, check_in, 
       floor, elevator, carport, 
       water, electricity, fuel_gas, 
-      heating, rent, cash_pledge, 
-      service_charge, agency_fee, longitude, 
-      latitude, tenancy_term, see_house, 
+      heating, tenancy_term, see_house, 
       television, refrigerator, washing_machine, 
       air_conditioner, calorifier, bed, 
       heat_gas, broad_band, closet, 
-      natural_gas, pay_way, check_in
-      )
+      natural_gas, pay_way, rent, 
+      cash_pledge, service_charge, agency_fee, 
+      longitude, latitude)
     values (#{id,jdbcType=INTEGER}, #{title,jdbcType=VARCHAR}, #{rental,jdbcType=INTEGER}, 
       #{streetId,jdbcType=INTEGER}, #{village,jdbcType=VARCHAR}, #{room,jdbcType=INTEGER}, 
       #{hall,jdbcType=INTEGER}, #{toilet,jdbcType=INTEGER}, #{terrace,jdbcType=VARCHAR}, 
-      #{agentId,jdbcType=INTEGER}, #{hostpic,jdbcType=VARCHAR}, #{feature,jdbcType=VARCHAR}, 
-      #{createTime,jdbcType=TIMESTAMP}, #{houseingId,jdbcType=INTEGER}, #{houseCheckCode,jdbcType=VARCHAR}, 
-      #{square,jdbcType=INTEGER}, #{orientations,jdbcType=VARCHAR}, #{servicingTime,jdbcType=TIMESTAMP}, 
+      #{rentStatus,jdbcType=TINYINT}, #{housingId,jdbcType=INTEGER}, #{agentId,jdbcType=INTEGER}, 
+      #{houseDescribe,jdbcType=VARCHAR}, #{hostpic,jdbcType=VARCHAR}, #{picFirst,jdbcType=VARCHAR}, 
+      #{picSecond,jdbcType=VARCHAR}, #{picThird,jdbcType=VARCHAR}, #{picFourth,jdbcType=VARCHAR}, 
+      #{planPic,jdbcType=VARCHAR}, #{feature,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{houseingId,jdbcType=INTEGER}, #{houseCheckCode,jdbcType=VARCHAR}, #{square,jdbcType=INTEGER}, 
+      #{orientations,jdbcType=VARCHAR}, #{servicingTime,jdbcType=TIMESTAMP}, #{checkIn,jdbcType=VARCHAR}, 
       #{floor,jdbcType=TINYINT}, #{elevator,jdbcType=TINYINT}, #{carport,jdbcType=TINYINT}, 
       #{water,jdbcType=TINYINT}, #{electricity,jdbcType=TINYINT}, #{fuelGas,jdbcType=TINYINT}, 
-      #{heating,jdbcType=VARCHAR}, #{rent,jdbcType=INTEGER}, #{cashPledge,jdbcType=INTEGER}, 
-      #{serviceCharge,jdbcType=INTEGER}, #{agencyFee,jdbcType=INTEGER}, #{longitude,jdbcType=DECIMAL}, 
-      #{latitude,jdbcType=DECIMAL}, #{tenancyTerm,jdbcType=VARCHAR}, #{seeHouse,jdbcType=VARCHAR}, 
+      #{heating,jdbcType=VARCHAR}, #{tenancyTerm,jdbcType=VARCHAR}, #{seeHouse,jdbcType=VARCHAR}, 
       #{television,jdbcType=TINYINT}, #{refrigerator,jdbcType=TINYINT}, #{washingMachine,jdbcType=TINYINT}, 
       #{airConditioner,jdbcType=TINYINT}, #{calorifier,jdbcType=TINYINT}, #{bed,jdbcType=TINYINT}, 
       #{heatGas,jdbcType=TINYINT}, #{broadBand,jdbcType=TINYINT}, #{closet,jdbcType=TINYINT}, 
-      #{naturalGas,jdbcType=TINYINT}, #{payWay,jdbcType=VARCHAR}, #{checkIn,jdbcType=VARCHAR}
-      )
+      #{naturalGas,jdbcType=TINYINT}, #{payWay,jdbcType=VARCHAR}, #{rent,jdbcType=INTEGER}, 
+      #{cashPledge,jdbcType=INTEGER}, #{serviceCharge,jdbcType=INTEGER}, #{agencyFee,jdbcType=INTEGER}, 
+      #{longitude,jdbcType=DECIMAL}, #{latitude,jdbcType=DECIMAL})
   </insert>
   <insert id="insertSelective" parameterType="com.kgc.pojo.Zufang" >
     insert into beike_zufang
@@ -208,11 +221,35 @@
       <if test="terrace != null" >
         terrace,
       </if>
+      <if test="rentStatus != null" >
+        rent_status,
+      </if>
+      <if test="housingId != null" >
+        housing_id,
+      </if>
       <if test="agentId != null" >
         agent_id,
       </if>
+      <if test="houseDescribe != null" >
+        house_describe,
+      </if>
       <if test="hostpic != null" >
         hostPic,
+      </if>
+      <if test="picFirst != null" >
+        pic_first,
+      </if>
+      <if test="picSecond != null" >
+        pic_second,
+      </if>
+      <if test="picThird != null" >
+        pic_third,
+      </if>
+      <if test="picFourth != null" >
+        pic_fourth,
+      </if>
+      <if test="planPic != null" >
+        plan_pic,
       </if>
       <if test="feature != null" >
         feature,
@@ -235,6 +272,9 @@
       <if test="servicingTime != null" >
         servicing_time,
       </if>
+      <if test="checkIn != null" >
+        check_in,
+      </if>
       <if test="floor != null" >
         floor,
       </if>
@@ -255,24 +295,6 @@
       </if>
       <if test="heating != null" >
         heating,
-      </if>
-      <if test="rent != null" >
-        rent,
-      </if>
-      <if test="cashPledge != null" >
-        cash_pledge,
-      </if>
-      <if test="serviceCharge != null" >
-        service_charge,
-      </if>
-      <if test="agencyFee != null" >
-        agency_fee,
-      </if>
-      <if test="longitude != null" >
-        longitude,
-      </if>
-      <if test="latitude != null" >
-        latitude,
       </if>
       <if test="tenancyTerm != null" >
         tenancy_term,
@@ -313,8 +335,23 @@
       <if test="payWay != null" >
         pay_way,
       </if>
-      <if test="checkIn != null" >
-        check_in,
+      <if test="rent != null" >
+        rent,
+      </if>
+      <if test="cashPledge != null" >
+        cash_pledge,
+      </if>
+      <if test="serviceCharge != null" >
+        service_charge,
+      </if>
+      <if test="agencyFee != null" >
+        agency_fee,
+      </if>
+      <if test="longitude != null" >
+        longitude,
+      </if>
+      <if test="latitude != null" >
+        latitude,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
@@ -345,11 +382,35 @@
       <if test="terrace != null" >
         #{terrace,jdbcType=VARCHAR},
       </if>
+      <if test="rentStatus != null" >
+        #{rentStatus,jdbcType=TINYINT},
+      </if>
+      <if test="housingId != null" >
+        #{housingId,jdbcType=INTEGER},
+      </if>
       <if test="agentId != null" >
         #{agentId,jdbcType=INTEGER},
       </if>
+      <if test="houseDescribe != null" >
+        #{houseDescribe,jdbcType=VARCHAR},
+      </if>
       <if test="hostpic != null" >
         #{hostpic,jdbcType=VARCHAR},
+      </if>
+      <if test="picFirst != null" >
+        #{picFirst,jdbcType=VARCHAR},
+      </if>
+      <if test="picSecond != null" >
+        #{picSecond,jdbcType=VARCHAR},
+      </if>
+      <if test="picThird != null" >
+        #{picThird,jdbcType=VARCHAR},
+      </if>
+      <if test="picFourth != null" >
+        #{picFourth,jdbcType=VARCHAR},
+      </if>
+      <if test="planPic != null" >
+        #{planPic,jdbcType=VARCHAR},
       </if>
       <if test="feature != null" >
         #{feature,jdbcType=VARCHAR},
@@ -372,6 +433,9 @@
       <if test="servicingTime != null" >
         #{servicingTime,jdbcType=TIMESTAMP},
       </if>
+      <if test="checkIn != null" >
+        #{checkIn,jdbcType=VARCHAR},
+      </if>
       <if test="floor != null" >
         #{floor,jdbcType=TINYINT},
       </if>
@@ -392,24 +456,6 @@
       </if>
       <if test="heating != null" >
         #{heating,jdbcType=VARCHAR},
-      </if>
-      <if test="rent != null" >
-        #{rent,jdbcType=INTEGER},
-      </if>
-      <if test="cashPledge != null" >
-        #{cashPledge,jdbcType=INTEGER},
-      </if>
-      <if test="serviceCharge != null" >
-        #{serviceCharge,jdbcType=INTEGER},
-      </if>
-      <if test="agencyFee != null" >
-        #{agencyFee,jdbcType=INTEGER},
-      </if>
-      <if test="longitude != null" >
-        #{longitude,jdbcType=DECIMAL},
-      </if>
-      <if test="latitude != null" >
-        #{latitude,jdbcType=DECIMAL},
       </if>
       <if test="tenancyTerm != null" >
         #{tenancyTerm,jdbcType=VARCHAR},
@@ -450,8 +496,23 @@
       <if test="payWay != null" >
         #{payWay,jdbcType=VARCHAR},
       </if>
-      <if test="checkIn != null" >
-        #{checkIn,jdbcType=VARCHAR},
+      <if test="rent != null" >
+        #{rent,jdbcType=INTEGER},
+      </if>
+      <if test="cashPledge != null" >
+        #{cashPledge,jdbcType=INTEGER},
+      </if>
+      <if test="serviceCharge != null" >
+        #{serviceCharge,jdbcType=INTEGER},
+      </if>
+      <if test="agencyFee != null" >
+        #{agencyFee,jdbcType=INTEGER},
+      </if>
+      <if test="longitude != null" >
+        #{longitude,jdbcType=DECIMAL},
+      </if>
+      <if test="latitude != null" >
+        #{latitude,jdbcType=DECIMAL},
       </if>
     </trim>
   </insert>
@@ -491,11 +552,35 @@
       <if test="record.terrace != null" >
         terrace = #{record.terrace,jdbcType=VARCHAR},
       </if>
+      <if test="record.rentStatus != null" >
+        rent_status = #{record.rentStatus,jdbcType=TINYINT},
+      </if>
+      <if test="record.housingId != null" >
+        housing_id = #{record.housingId,jdbcType=INTEGER},
+      </if>
       <if test="record.agentId != null" >
         agent_id = #{record.agentId,jdbcType=INTEGER},
       </if>
+      <if test="record.houseDescribe != null" >
+        house_describe = #{record.houseDescribe,jdbcType=VARCHAR},
+      </if>
       <if test="record.hostpic != null" >
         hostPic = #{record.hostpic,jdbcType=VARCHAR},
+      </if>
+      <if test="record.picFirst != null" >
+        pic_first = #{record.picFirst,jdbcType=VARCHAR},
+      </if>
+      <if test="record.picSecond != null" >
+        pic_second = #{record.picSecond,jdbcType=VARCHAR},
+      </if>
+      <if test="record.picThird != null" >
+        pic_third = #{record.picThird,jdbcType=VARCHAR},
+      </if>
+      <if test="record.picFourth != null" >
+        pic_fourth = #{record.picFourth,jdbcType=VARCHAR},
+      </if>
+      <if test="record.planPic != null" >
+        plan_pic = #{record.planPic,jdbcType=VARCHAR},
       </if>
       <if test="record.feature != null" >
         feature = #{record.feature,jdbcType=VARCHAR},
@@ -518,6 +603,9 @@
       <if test="record.servicingTime != null" >
         servicing_time = #{record.servicingTime,jdbcType=TIMESTAMP},
       </if>
+      <if test="record.checkIn != null" >
+        check_in = #{record.checkIn,jdbcType=VARCHAR},
+      </if>
       <if test="record.floor != null" >
         floor = #{record.floor,jdbcType=TINYINT},
       </if>
@@ -538,24 +626,6 @@
       </if>
       <if test="record.heating != null" >
         heating = #{record.heating,jdbcType=VARCHAR},
-      </if>
-      <if test="record.rent != null" >
-        rent = #{record.rent,jdbcType=INTEGER},
-      </if>
-      <if test="record.cashPledge != null" >
-        cash_pledge = #{record.cashPledge,jdbcType=INTEGER},
-      </if>
-      <if test="record.serviceCharge != null" >
-        service_charge = #{record.serviceCharge,jdbcType=INTEGER},
-      </if>
-      <if test="record.agencyFee != null" >
-        agency_fee = #{record.agencyFee,jdbcType=INTEGER},
-      </if>
-      <if test="record.longitude != null" >
-        longitude = #{record.longitude,jdbcType=DECIMAL},
-      </if>
-      <if test="record.latitude != null" >
-        latitude = #{record.latitude,jdbcType=DECIMAL},
       </if>
       <if test="record.tenancyTerm != null" >
         tenancy_term = #{record.tenancyTerm,jdbcType=VARCHAR},
@@ -596,8 +666,23 @@
       <if test="record.payWay != null" >
         pay_way = #{record.payWay,jdbcType=VARCHAR},
       </if>
-      <if test="record.checkIn != null" >
-        check_in = #{record.checkIn,jdbcType=VARCHAR},
+      <if test="record.rent != null" >
+        rent = #{record.rent,jdbcType=INTEGER},
+      </if>
+      <if test="record.cashPledge != null" >
+        cash_pledge = #{record.cashPledge,jdbcType=INTEGER},
+      </if>
+      <if test="record.serviceCharge != null" >
+        service_charge = #{record.serviceCharge,jdbcType=INTEGER},
+      </if>
+      <if test="record.agencyFee != null" >
+        agency_fee = #{record.agencyFee,jdbcType=INTEGER},
+      </if>
+      <if test="record.longitude != null" >
+        longitude = #{record.longitude,jdbcType=DECIMAL},
+      </if>
+      <if test="record.latitude != null" >
+        latitude = #{record.latitude,jdbcType=DECIMAL},
       </if>
     </set>
     <if test="_parameter != null" >
@@ -615,8 +700,16 @@
       hall = #{record.hall,jdbcType=INTEGER},
       toilet = #{record.toilet,jdbcType=INTEGER},
       terrace = #{record.terrace,jdbcType=VARCHAR},
+      rent_status = #{record.rentStatus,jdbcType=TINYINT},
+      housing_id = #{record.housingId,jdbcType=INTEGER},
       agent_id = #{record.agentId,jdbcType=INTEGER},
+      house_describe = #{record.houseDescribe,jdbcType=VARCHAR},
       hostPic = #{record.hostpic,jdbcType=VARCHAR},
+      pic_first = #{record.picFirst,jdbcType=VARCHAR},
+      pic_second = #{record.picSecond,jdbcType=VARCHAR},
+      pic_third = #{record.picThird,jdbcType=VARCHAR},
+      pic_fourth = #{record.picFourth,jdbcType=VARCHAR},
+      plan_pic = #{record.planPic,jdbcType=VARCHAR},
       feature = #{record.feature,jdbcType=VARCHAR},
       create_time = #{record.createTime,jdbcType=TIMESTAMP},
       houseing_id = #{record.houseingId,jdbcType=INTEGER},
@@ -624,6 +717,7 @@
       square = #{record.square,jdbcType=INTEGER},
       orientations = #{record.orientations,jdbcType=VARCHAR},
       servicing_time = #{record.servicingTime,jdbcType=TIMESTAMP},
+      check_in = #{record.checkIn,jdbcType=VARCHAR},
       floor = #{record.floor,jdbcType=TINYINT},
       elevator = #{record.elevator,jdbcType=TINYINT},
       carport = #{record.carport,jdbcType=TINYINT},
@@ -631,12 +725,6 @@
       electricity = #{record.electricity,jdbcType=TINYINT},
       fuel_gas = #{record.fuelGas,jdbcType=TINYINT},
       heating = #{record.heating,jdbcType=VARCHAR},
-      rent = #{record.rent,jdbcType=INTEGER},
-      cash_pledge = #{record.cashPledge,jdbcType=INTEGER},
-      service_charge = #{record.serviceCharge,jdbcType=INTEGER},
-      agency_fee = #{record.agencyFee,jdbcType=INTEGER},
-      longitude = #{record.longitude,jdbcType=DECIMAL},
-      latitude = #{record.latitude,jdbcType=DECIMAL},
       tenancy_term = #{record.tenancyTerm,jdbcType=VARCHAR},
       see_house = #{record.seeHouse,jdbcType=VARCHAR},
       television = #{record.television,jdbcType=TINYINT},
@@ -650,7 +738,12 @@
       closet = #{record.closet,jdbcType=TINYINT},
       natural_gas = #{record.naturalGas,jdbcType=TINYINT},
       pay_way = #{record.payWay,jdbcType=VARCHAR},
-      check_in = #{record.checkIn,jdbcType=VARCHAR}
+      rent = #{record.rent,jdbcType=INTEGER},
+      cash_pledge = #{record.cashPledge,jdbcType=INTEGER},
+      service_charge = #{record.serviceCharge,jdbcType=INTEGER},
+      agency_fee = #{record.agencyFee,jdbcType=INTEGER},
+      longitude = #{record.longitude,jdbcType=DECIMAL},
+      latitude = #{record.latitude,jdbcType=DECIMAL}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -682,11 +775,35 @@
       <if test="terrace != null" >
         terrace = #{terrace,jdbcType=VARCHAR},
       </if>
+      <if test="rentStatus != null" >
+        rent_status = #{rentStatus,jdbcType=TINYINT},
+      </if>
+      <if test="housingId != null" >
+        housing_id = #{housingId,jdbcType=INTEGER},
+      </if>
       <if test="agentId != null" >
         agent_id = #{agentId,jdbcType=INTEGER},
       </if>
+      <if test="houseDescribe != null" >
+        house_describe = #{houseDescribe,jdbcType=VARCHAR},
+      </if>
       <if test="hostpic != null" >
         hostPic = #{hostpic,jdbcType=VARCHAR},
+      </if>
+      <if test="picFirst != null" >
+        pic_first = #{picFirst,jdbcType=VARCHAR},
+      </if>
+      <if test="picSecond != null" >
+        pic_second = #{picSecond,jdbcType=VARCHAR},
+      </if>
+      <if test="picThird != null" >
+        pic_third = #{picThird,jdbcType=VARCHAR},
+      </if>
+      <if test="picFourth != null" >
+        pic_fourth = #{picFourth,jdbcType=VARCHAR},
+      </if>
+      <if test="planPic != null" >
+        plan_pic = #{planPic,jdbcType=VARCHAR},
       </if>
       <if test="feature != null" >
         feature = #{feature,jdbcType=VARCHAR},
@@ -709,6 +826,9 @@
       <if test="servicingTime != null" >
         servicing_time = #{servicingTime,jdbcType=TIMESTAMP},
       </if>
+      <if test="checkIn != null" >
+        check_in = #{checkIn,jdbcType=VARCHAR},
+      </if>
       <if test="floor != null" >
         floor = #{floor,jdbcType=TINYINT},
       </if>
@@ -729,24 +849,6 @@
       </if>
       <if test="heating != null" >
         heating = #{heating,jdbcType=VARCHAR},
-      </if>
-      <if test="rent != null" >
-        rent = #{rent,jdbcType=INTEGER},
-      </if>
-      <if test="cashPledge != null" >
-        cash_pledge = #{cashPledge,jdbcType=INTEGER},
-      </if>
-      <if test="serviceCharge != null" >
-        service_charge = #{serviceCharge,jdbcType=INTEGER},
-      </if>
-      <if test="agencyFee != null" >
-        agency_fee = #{agencyFee,jdbcType=INTEGER},
-      </if>
-      <if test="longitude != null" >
-        longitude = #{longitude,jdbcType=DECIMAL},
-      </if>
-      <if test="latitude != null" >
-        latitude = #{latitude,jdbcType=DECIMAL},
       </if>
       <if test="tenancyTerm != null" >
         tenancy_term = #{tenancyTerm,jdbcType=VARCHAR},
@@ -787,8 +889,23 @@
       <if test="payWay != null" >
         pay_way = #{payWay,jdbcType=VARCHAR},
       </if>
-      <if test="checkIn != null" >
-        check_in = #{checkIn,jdbcType=VARCHAR},
+      <if test="rent != null" >
+        rent = #{rent,jdbcType=INTEGER},
+      </if>
+      <if test="cashPledge != null" >
+        cash_pledge = #{cashPledge,jdbcType=INTEGER},
+      </if>
+      <if test="serviceCharge != null" >
+        service_charge = #{serviceCharge,jdbcType=INTEGER},
+      </if>
+      <if test="agencyFee != null" >
+        agency_fee = #{agencyFee,jdbcType=INTEGER},
+      </if>
+      <if test="longitude != null" >
+        longitude = #{longitude,jdbcType=DECIMAL},
+      </if>
+      <if test="latitude != null" >
+        latitude = #{latitude,jdbcType=DECIMAL},
       </if>
     </set>
     where id = #{id,jdbcType=INTEGER}
@@ -803,8 +920,16 @@
       hall = #{hall,jdbcType=INTEGER},
       toilet = #{toilet,jdbcType=INTEGER},
       terrace = #{terrace,jdbcType=VARCHAR},
+      rent_status = #{rentStatus,jdbcType=TINYINT},
+      housing_id = #{housingId,jdbcType=INTEGER},
       agent_id = #{agentId,jdbcType=INTEGER},
+      house_describe = #{houseDescribe,jdbcType=VARCHAR},
       hostPic = #{hostpic,jdbcType=VARCHAR},
+      pic_first = #{picFirst,jdbcType=VARCHAR},
+      pic_second = #{picSecond,jdbcType=VARCHAR},
+      pic_third = #{picThird,jdbcType=VARCHAR},
+      pic_fourth = #{picFourth,jdbcType=VARCHAR},
+      plan_pic = #{planPic,jdbcType=VARCHAR},
       feature = #{feature,jdbcType=VARCHAR},
       create_time = #{createTime,jdbcType=TIMESTAMP},
       houseing_id = #{houseingId,jdbcType=INTEGER},
@@ -812,6 +937,7 @@
       square = #{square,jdbcType=INTEGER},
       orientations = #{orientations,jdbcType=VARCHAR},
       servicing_time = #{servicingTime,jdbcType=TIMESTAMP},
+      check_in = #{checkIn,jdbcType=VARCHAR},
       floor = #{floor,jdbcType=TINYINT},
       elevator = #{elevator,jdbcType=TINYINT},
       carport = #{carport,jdbcType=TINYINT},
@@ -819,12 +945,6 @@
       electricity = #{electricity,jdbcType=TINYINT},
       fuel_gas = #{fuelGas,jdbcType=TINYINT},
       heating = #{heating,jdbcType=VARCHAR},
-      rent = #{rent,jdbcType=INTEGER},
-      cash_pledge = #{cashPledge,jdbcType=INTEGER},
-      service_charge = #{serviceCharge,jdbcType=INTEGER},
-      agency_fee = #{agencyFee,jdbcType=INTEGER},
-      longitude = #{longitude,jdbcType=DECIMAL},
-      latitude = #{latitude,jdbcType=DECIMAL},
       tenancy_term = #{tenancyTerm,jdbcType=VARCHAR},
       see_house = #{seeHouse,jdbcType=VARCHAR},
       television = #{television,jdbcType=TINYINT},
@@ -838,7 +958,12 @@
       closet = #{closet,jdbcType=TINYINT},
       natural_gas = #{naturalGas,jdbcType=TINYINT},
       pay_way = #{payWay,jdbcType=VARCHAR},
-      check_in = #{checkIn,jdbcType=VARCHAR}
+      rent = #{rent,jdbcType=INTEGER},
+      cash_pledge = #{cashPledge,jdbcType=INTEGER},
+      service_charge = #{serviceCharge,jdbcType=INTEGER},
+      agency_fee = #{agencyFee,jdbcType=INTEGER},
+      longitude = #{longitude,jdbcType=DECIMAL},
+      latitude = #{latitude,jdbcType=DECIMAL}
     where id = #{id,jdbcType=INTEGER}
   </update>
 </mapper>
