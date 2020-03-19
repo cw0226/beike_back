@@ -21,6 +21,20 @@ public class UserController extends BaseController{
     private UserService userService;
 
     /**
+     * 根据id删除用户
+     * @param id
+     * @return
+     */
+    @GetMapping("/view/deleteUserById")
+    public Result deleteUserById(@RequestParam Integer id){
+        int count = userService.deleteUserById(id);
+        if(count > 0){
+            return new Result(count,"删除成功",100);
+        }
+        return new Result(null,"删除失败",104);
+    }
+
+    /**
      * 获取所有用户信息
      * 传入id除了id本身
      * @return
@@ -87,7 +101,7 @@ public class UserController extends BaseController{
      * @param multipartFile
      * @return
      */
-    @PostMapping("/updUserData")
+    @PostMapping("/view/updUserData")
     public Result updUserData(User user,@RequestParam(value = "userpic",required = false)MultipartFile multipartFile) throws IOException {
         if(multipartFile != null && !multipartFile.isEmpty()){
             //上传文件到ftp服务器

@@ -54,4 +54,11 @@ public interface UserService {
      * @return
      */
     PageInfo<User> getAllUserInfo(Integer pageNum, Integer pageSize,Integer id);
+
+    /**
+     * 根据用户id删除用户
+     * @param id
+     * @return
+     */
+    int deleteUserById(Integer id);
 }

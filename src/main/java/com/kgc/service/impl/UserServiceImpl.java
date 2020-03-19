@@ -93,4 +93,9 @@ public class UserServiceImpl implements UserService {
         }
         return null;
     }
+
+    @Override
+    public int deleteUserById(Integer id) {
+        return userMapper.deleteByPrimaryKey(id);
+    }
 }
