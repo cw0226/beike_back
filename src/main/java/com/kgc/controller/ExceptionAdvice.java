@@ -11,6 +11,7 @@ public class ExceptionAdvice {
     @ResponseBody
     @ExceptionHandler(Exception.class)
     public Result exception(Exception e){
+        e.printStackTrace();
         return new Result(null,"返回异常："+e.getMessage(),101);
     }
 }

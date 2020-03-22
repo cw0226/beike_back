@@ -6,13 +6,15 @@ import com.kgc.dao.ZufangMapper;
 import com.kgc.dao.ZufangMapperEx;
 import com.kgc.pojo.Zufang;
 import com.kgc.pojo.ZufangEx;
-import com.kgc.repository.ZufangRepostory;
+import com.kgc.repository.ZufangRepository;
 import com.kgc.service.ZufangService;
+import org.apache.solr.client.solrj.SolrServerException;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -24,7 +26,7 @@ public class ZufangServiceImpl implements ZufangService {
     @Resource
     private ZufangMapperEx zufangMapperEx;
     @Resource
-    private ZufangRepostory zufangRepostory;
+    private ZufangRepository zufangRepository;
 
     @Cacheable(value = "zufang",key = "'getZufangList'+#pageNum+','+#pageSize+','+#areaId+','+#streetId+','+#rental+','+#orderBy")
     @Override
@@ -41,16 +43,15 @@ public class ZufangServiceImpl implements ZufangService {
         return zufangMapper.selectByPrimaryKey(id);
     }
 
-    @Override
-    public Map<String, Object> getZufangListOfSolr(String params, Integer pageNow, Integer pageSize) {
-        //获取数据总行数
-        long numFound = zufangRepostory.countByStreetOrAreaOrVillage(params,params,params);
-        PageRequest pageRequest = PageRequest.of(pageNow-1,pageSize);
-        List<com.kgc.document.Zufang> zufangList = zufangRepostory.findByStreetOrAreaOrVillage(params,params,params,pageRequest);
 
-        Map<String,Object> map = new HashMap<>();
-        map.put("numFound",numFound);
-        map.put("list",zufangList);
+    @Override
+    public Map<String, Object> getZufangListOfSolr(String params,String area,String street,Integer rental,String orderBy,
+                                                   String rent1,String rent2,String rent3,String rent4,String rent5,
+                                                   String rent6,String rent7,String room1,String room2,String room3,
+                                                   String room4,Integer pageNow, Integer pageSize) throws IOException, SolrServerException {
+        //开始下标
+        int start = (pageNow-1)*pageSize;
+        Map<String,Object> map = zufangRepository.getZufangList(params,area,street,rental,orderBy, rent1,rent2,rent3,rent4,rent5,rent6,rent7,room1,room2,room3,room4,start,pageSize);
         return map;
     }
 }

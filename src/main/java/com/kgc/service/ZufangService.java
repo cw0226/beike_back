@@ -3,7 +3,9 @@ package com.kgc.service;
 import com.github.pagehelper.PageInfo;
 import com.kgc.pojo.Zufang;
 import com.kgc.pojo.ZufangEx;
+import org.apache.solr.client.solrj.SolrServerException;
 
+import java.io.IOException;
 import java.util.List;
 import java.util.Map;
 
@@ -22,5 +24,8 @@ public interface ZufangService {
 
     Zufang getHouseInfoById(Integer id);
 
-    Map<String, Object> getZufangListOfSolr(String params, Integer pageNow, Integer pageSize);
+    Map<String, Object> getZufangListOfSolr(String params,String area,String street,Integer rental,String orderBy,
+                                            String rent1,String rent2,String rent3,String rent4,String rent5,
+                                            String rent6,String rent7,String room1,String room2,String room3,
+                                            String room4,Integer pageNow, Integer pageSize) throws IOException, SolrServerException;
 }
