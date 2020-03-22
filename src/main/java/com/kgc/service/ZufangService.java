@@ -5,6 +5,7 @@ import com.kgc.pojo.Zufang;
 import com.kgc.pojo.ZufangEx;
 
 import java.util.List;
+import java.util.Map;
 
 public interface ZufangService {
     /**
@@ -20,4 +21,6 @@ public interface ZufangService {
     PageInfo<ZufangEx> getZufangList(Integer pageNum,Integer pageSize,Integer areaId,Integer streetId,Integer rental,String orderBy);
 
     Zufang getHouseInfoById(Integer id);
+
+    Map<String, Object> getZufangListOfSolr(String params, Integer pageNow, Integer pageSize);
 }
