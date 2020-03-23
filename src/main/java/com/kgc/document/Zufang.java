@@ -1,22 +1,45 @@
 package com.kgc.document;
 
+import org.apache.solr.client.solrj.beans.Field;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.solr.core.mapping.SolrDocument;
+
+import java.util.Date;
+
+@SolrDocument(collection = "zufang")
 public class Zufang {
+    @Field
     private String id;
+    @Field
     private String area;
+    @Field
     private String street;
+    @Field
     private String orientations;
-    private String hall;
-    private String toilet;
-    private String room;
-    private String rental;
+    @Field
+    private Integer hall;
+    @Field
+    private Integer toilet;
+    @Field
+    private Integer room;
+    @Field
+    private Integer rental;
+    @Field
     private String village;
+    @Field
     private String hostpic;
+    @Field
     private String title;
+    @Field
     private String feature;
-    private String servicingTime;
+    @Field
+    private Date servicingTime;
+    @Field
     private String terrace;
-    private String square;
-    private String rent;
+    @Field
+    private Integer square;
+    @Field
+    private Integer rent;
 
     public String getId() {
         return id;
@@ -50,35 +73,35 @@ public class Zufang {
         this.orientations = orientations;
     }
 
-    public String getHall() {
+    public Integer getHall() {
         return hall;
     }
 
-    public void setHall(String hall) {
+    public void setHall(Integer hall) {
         this.hall = hall;
     }
 
-    public String getToilet() {
+    public Integer getToilet() {
         return toilet;
     }
 
-    public void setToilet(String toilet) {
+    public void setToilet(Integer toilet) {
         this.toilet = toilet;
     }
 
-    public String getRoom() {
+    public Integer getRoom() {
         return room;
     }
 
-    public void setRoom(String room) {
+    public void setRoom(Integer room) {
         this.room = room;
     }
 
-    public String getRental() {
+    public Integer getRental() {
         return rental;
     }
 
-    public void setRental(String rental) {
+    public void setRental(Integer rental) {
         this.rental = rental;
     }
 
@@ -114,11 +137,11 @@ public class Zufang {
         this.feature = feature;
     }
 
-    public String getServicingTime() {
+    public Date getServicingTime() {
         return servicingTime;
     }
 
-    public void setServicingTime(String servicingTime) {
+    public void setServicingTime(Date servicingTime) {
         this.servicingTime = servicingTime;
     }
 
@@ -130,19 +153,19 @@ public class Zufang {
         this.terrace = terrace;
     }
 
-    public String getSquare() {
+    public Integer getSquare() {
         return square;
     }
 
-    public void setSquare(String square) {
+    public void setSquare(Integer square) {
         this.square = square;
     }
 
-    public String getRent() {
+    public Integer getRent() {
         return rent;
     }
 
-    public void setRent(String rent) {
+    public void setRent(Integer rent) {
         this.rent = rent;
     }
 }
