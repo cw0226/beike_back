@@ -7,6 +7,7 @@ import com.kgc.pojo.Agent;
 import com.kgc.service.AgentService;
 import com.kgc.utils.FtpUtil;
 import com.kgc.utils.Result;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -79,13 +80,14 @@ public class AgentController {
 
     /**
      * 获取经纪人列表
-     * @param page
-     * @param limit
+     * @param pageNum
+     * @param pageSize
      * @return
      */
+    @Cacheable(value = "agent", key = "'getAgentList'+#pageNum+'-'+#pageSize")
     @GetMapping("getAgentList")
-    public Result getAgentList(@RequestParam Integer page,@RequestParam Integer limit){
-        PageHelper.startPage(page, limit);
+    public Result getAgentList(@RequestParam Integer pageNum,@RequestParam Integer pageSize){
+        PageHelper.startPage(pageNum, pageSize);
         List<Agent> agentList = agentService.getAgentList();
         PageInfo<Agent> pageInfo = new PageInfo<Agent>(agentList);
         return new Result(pageInfo,"请求处理成功",100);

@@ -21,7 +21,6 @@ public class AgentServiceImpl implements AgentService {
         return agentMapper.selectByPrimaryKey(id);
     }
 
-    @Cacheable(value = "agent", key = "'getAgentList'")
     @Override
     public List<Agent> getAgentList() {
         return agentMapper.selectByExample(null);
