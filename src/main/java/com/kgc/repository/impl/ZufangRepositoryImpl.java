@@ -27,7 +27,7 @@ public class ZufangRepositoryImpl implements ZufangRepository {
         SolrQuery solrQuery = new SolrQuery();
 
         //如果参数都为空，则查询全部
-        if(params==null && area==null && street==null||street=="" && rental==null  ){
+        if(params==null || params == "" && area==null && street==null||street=="" && rental==null  ){
             solrQuery.setQuery("*:*");
         }else{ //有不为空的
             if(params!=null && params!=""){//搜索框参数
@@ -42,6 +42,13 @@ public class ZufangRepositoryImpl implements ZufangRepository {
             if (rental!=null){//租赁方式（1:整租，2：合租）
                 solrQuery.setQuery("rental:"+rental);
             }
+            //开启高亮
+            solrQuery.setHighlight(true);
+            solrQuery.addHighlightField("street");
+            solrQuery.addHighlightField("area");
+            solrQuery.addHighlightField("village");
+            solrQuery.setHighlightSimplePre("<font color='orange'>");
+            solrQuery.setHighlightSimplePost("</font>");
         }
         //租金查询参数
         String queryOfRent;
@@ -88,16 +95,36 @@ public class ZufangRepositoryImpl implements ZufangRepository {
 
         solrQuery.setStart(start);
         solrQuery.setRows(pageSize);
-        //获取查询数据
-        QueryResponse zufang = solrClient.query("zufang",solrQuery);
-        //获取租房列表
-        List<Zufang> zufangBeans = zufang.getBeans(Zufang.class);
+
+        QueryResponse queryResponse = solrClient.query("zufang",solrQuery);
+        //获取普通结果集
+        List<Zufang> zufangList = queryResponse.getBeans(Zufang.class);
+        //获取高亮结果集
+        Map<String, Map<String, List<String>>> highlighting = queryResponse.getHighlighting();
+        if (highlighting != null){
+            for (Zufang zufang:zufangList){
+                List<String> street1 = highlighting.get(zufang.getId()).get("street");
+                List<String> area1 = highlighting.get(zufang.getId()).get("area");
+                List<String> village1 = highlighting.get(zufang.getId()).get("village");
+                if (street1 != null && street1.size()>0){
+                    zufang.setStreet(street1.get(0));
+                }
+                if (area1 != null && area1.size() >0){
+                    zufang.setArea(area1.get(0));
+                }
+                if(village1 != null && village1.size() >0){
+                    zufang.setVillage(village1.get(0));
+                }
+
+            }
+        }
+
         //获取列表总条数
-        long numFound = zufang.getResults().getNumFound();
+        long numFound = queryResponse.getResults().getNumFound();
 
         Map<String,Object> map = new HashMap<>();
         map.put("numFound",numFound);
-        map.put("list",zufangBeans);
+        map.put("list",zufangList);
         return map;
     }
 }
